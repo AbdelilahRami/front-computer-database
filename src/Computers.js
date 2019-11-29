@@ -10,7 +10,7 @@ export function Computers(){
           <Table>
         <thead>
           <tr>
-            <th>#</th>
+            <th># </th>
             <th>Name</th>
             <th>Introduced</th>
             <th>Discontinued</th>
