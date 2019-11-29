@@ -1,5 +1,7 @@
 import React from 'react';
-export default function Computer({computer}){
+
+export default function Computer({computer,checkFun}){
+  
 const {id,name,introduced,discontinued,companyDTO}=computer
     return(
           <tr>
@@ -11,6 +13,8 @@ const {id,name,introduced,discontinued,companyDTO}=computer
           </tr>
     )
 }
-function checkFun(id){
-    console.log(id);
-}
+
+
+
+
+
