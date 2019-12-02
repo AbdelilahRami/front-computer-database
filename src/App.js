@@ -10,11 +10,7 @@ import { Login } from './Login'
 function App() {
   return (
     <div className="App">
-     <Login/>
-        <Computers/>
-      <Footer/>
        <Header/>
-    <Companies/>
     </div>
   );
 }
