@@ -6,14 +6,12 @@ import {Companies} from './Companies'
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import './App.css';
 import {AddComputer} from './AddComputer'
+import { Login } from './Login'
 
 function App() {
-  
   return (
     <div className="App">
-        <Computers/>
-    <Companies/>
-      <AddComputer/>
+     <Login/>
     </div>
   );
 }
