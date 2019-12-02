@@ -7,3 +7,10 @@ export function useComputers(){
 export function deleteComputers(tableau){
     console.log(tableau)
 }
+
+export function searchName(champ){
+    console.log(champ)
+}
+export function countComputers(){
+   return(MOCK_COMPUTERS.nb_computer)
+}
