@@ -1,10 +1,10 @@
 import React , { useState } from 'react';
-import { useComputers,deleteComputers,searchName } from './Computers.hook.js'
+import { useComputers,deleteComputers,searchName, countComputers } from './Computers.hook.js'
 import  Computer  from './Computer'
 import { Table } from 'reactstrap';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Input , Button } from 'reactstrap';
+import { Input , Button , Label} from 'reactstrap';
 
 export function Computers(){
 
@@ -12,6 +12,7 @@ export function Computers(){
   console.log(useComputers())
 
   const [computers]=useState(useComputers())
+  const count=useState(countComputers())
 
   let ids=[]  
   
@@ -43,6 +44,8 @@ export function Computers(){
     <div>
         <input style={{width:"300px",align:"center"}} type="text" placeholder="Veuillez saisir un nom de computer " onChange={event =>setchampSearch(event.target.value)} />
         <Button onClick={() => showName()}>  Search </Button>
+        <br/>
+         <Label> Nombre d'ordinateurs : {count} </Label>
         <br/>
           <Table>
             <thead>
