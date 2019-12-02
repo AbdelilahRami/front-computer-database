@@ -7,3 +7,7 @@ export function useComputers(){
 export function deleteComputers(tableau){
     console.log(tableau)
 }
+
+export function searchName(champ){
+    console.log(champ)
+}

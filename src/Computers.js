@@ -1,12 +1,14 @@
 import React , { useState } from 'react';
-import { useComputers,deleteComputers } from './Computers.hook.js'
+import { useComputers,deleteComputers,searchName } from './Computers.hook.js'
 import  Computer  from './Computer'
 import { Table } from 'reactstrap';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Input , Button } from 'reactstrap';
 
 export function Computers(){
 
+  const [statechampSearch,setchampSearch]=useState()
   console.log(useComputers())
 
   const [computers]=useState(useComputers())
@@ -33,27 +35,33 @@ export function Computers(){
   function deleteFunction(){
     deleteComputers(ids);
   }
-  
+
+  function showName(){
+    searchName(statechampSearch);
+  }
   return(
-      <div>
+    <div>
+        <input style={{width:"300px",align:"center"}} type="text" placeholder="Veuillez saisir un nom de computer " onChange={event =>setchampSearch(event.target.value)} />
+        <Button onClick={() => showName()}>  Search </Button>
+        <br/>
           <Table>
-        <thead>
-          <tr>
-            <th>#  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()}/> </th>
-            <th>Name</th>
-            <th>Introduced</th>
-            <th>Discontinued</th>
-            <th>Company</th>
-          </tr>
-        </thead>
-        <tbody>
-          {computers.map(computer =>
-                <Computer computer={computer}
-                          key={computer.id}
-                          checkFun={checkFun}
-                />
-          )}         
-        </tbody>
+            <thead>
+              <tr>
+                <th>#  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()}/> </th>
+                <th>Name</th>
+                <th>Introduced</th>
+                <th>Discontinued</th>
+                <th>Company</th>
+              </tr>
+            </thead>
+            <tbody>
+              {computers.map(computer =>
+                    <Computer computer={computer}
+                              key={computer.id}
+                              checkFun={checkFun}
+                    />
+              )}         
+            </tbody>
         </Table>
       </div>
   )
