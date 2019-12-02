@@ -45,7 +45,7 @@ export const MOCK_COMPANIS =[
     }
 ]
 
-export const MOCK_COMPUTERS = {
+export  const MOCK_COMPUTERS = {
     "nb_computer": 538,
     "list_computer": [
       {
