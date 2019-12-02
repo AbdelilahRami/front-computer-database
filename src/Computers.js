@@ -1,13 +1,16 @@
 import React , { useState } from 'react';
-import { useComputers } from './Computers.hook.js'
+import { useComputers,deleteComputers } from './Computers.hook.js'
 import  Computer  from './Computer'
 import { Table } from 'reactstrap';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export function Computers(){
 
   console.log(useComputers())
 
   const [computers]=useState(useComputers())
+
   let ids=[]  
   
   function arrayRemove(arr, value) {
@@ -26,12 +29,17 @@ export function Computers(){
     }
     console.log(ids);
   }
+
+  function deleteFunction(){
+    deleteComputers(ids);
+  }
+  
   return(
       <div>
           <Table>
         <thead>
           <tr>
-            <th># </th>
+            <th>#  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()}/> </th>
             <th>Name</th>
             <th>Introduced</th>
             <th>Discontinued</th>
