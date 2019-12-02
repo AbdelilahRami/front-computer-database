@@ -1,5 +1,5 @@
 
-import { Computers } from './Computers'
+import  Header  from './Header';
 import React from "react";
 import {Footer} from './Footer'
 import './App.css';
@@ -13,8 +13,9 @@ function App() {
      <Login/>
         <Computers/>
       <Footer/>
+       <Header/>
+    <Companies/>
     </div>
   );
 }
-
 export default App;
