@@ -8,13 +8,21 @@ export function Computers(){
   console.log(useComputers())
 
   const [computers]=useState(useComputers())
-  const ids=[]  
+  let ids=[]  
+  
+  function arrayRemove(arr, value) {
+
+    return arr.filter(function(ele){
+        return ele !== value;
+    });
+ 
+ }
 
   function checkFun(id){
     if(!ids.includes(id)){
         ids.push(id);
     }else{
-       ids.splice(id);
+       ids=arrayRemove(ids,id);
     }
     console.log(ids);
   }
