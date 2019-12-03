@@ -14,3 +14,11 @@ export function searchName(champ){
 export function countComputers(){
    return(MOCK_COMPUTERS.nb_computer)
 }
+
+export function limitPage(limit){
+    console.log(limit)
+}
+
+export function actualPage(actual){
+    console.log(actual)
+}
