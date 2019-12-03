@@ -29,7 +29,7 @@ export function Companies({companis,editRow}) {
         <div>
         {!editing ?<>
             <div>
-                        <button onClick={}>Add Company</button>
+                        <button onClick={()=>{}}>Add Company</button>
              </div>
             <Table  responsive striped bordered hover width="50%" size="sm">
                 <thead>
