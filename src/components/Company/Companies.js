@@ -30,7 +30,7 @@ export function Companies({companis,editRow}) {
     return (
         <div>
         {!editing && !adding ?<>
-                    <button onClick={()=>setAdding(!adding)}>Add Company</button>
+                    <button  className="btn btn-secondary  float-right" onClick={()=>setAdding(!adding)}>Add Company</button>
             <Table  responsive striped bordered hover width="50%" size="sm">
                 <thead>
                     <tr>
