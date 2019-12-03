@@ -16,8 +16,8 @@ export function Companies({companis,editRow}) {
         setEditing(true)
         setCurrentCompany({id:company.id, name:company.name})
       }
-      console.log(adding);
       function addCompany(company) {
+        setAdding(false);
         company.id = companies.length + 1;
         companies.push(company);
         setCompanies(companies);
