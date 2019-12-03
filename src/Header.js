@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router , Switch , Route , Link } from "react-router-dom";
+import { BrowserRouter as Router , Switch , Route , Link , Redirect } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -47,6 +47,7 @@ export default function Header(){
       <Route path="/login">
           <Login/>
       </Route>
+      <Redirect exact from="/**" to="computers" />
     </Switch>
 
         {/* A <Switch> looks through its children <Route>s and
