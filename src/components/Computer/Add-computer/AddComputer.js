@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { Input, Button, FormGroup,Label,Form } from 'reactstrap';
 
 function AddComputer() {
 
 
 
     return (
-        <Form>
-
+        <Form className="form">
       <FormGroup>
         <Label for="exampleDatetime">Name</Label>
         <Input
