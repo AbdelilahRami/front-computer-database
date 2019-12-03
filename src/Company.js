@@ -1,14 +1,17 @@
-import React,{useState} from 'react';
-
-
-export function Company({company}) {
-    const [stateCompany, setStateCompany] = useState(company);
+import React, {useState} from 'react';
+export function Company({company,edit}) {
+    const {id,name} = company
+    const [stateCompani,setStateCompani] = useState(company)
 
     return (
         <>
             <tr>
-                <td>{company.id}</td>
-                <td>{company.name}</td>
+                <td>{id}</td>
+                <td>{name}</td>
+                <td>
+              <button className="button muted-button" onClick={()=>
+                  edit(stateCompani)} >Edit</button>
+            </td>
             </tr>    
         </>
     )
