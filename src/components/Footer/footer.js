@@ -2,7 +2,9 @@ import React  from 'react';
 import { Navbar, NavbarBrand , Container ,Input} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleLeft,faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+
 export function Footer() {
+    
 const numbers=[1,2,3,4,5,6,7,8,9,10]
     return(
 <div className="fixed-bottom">  

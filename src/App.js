@@ -1,10 +1,11 @@
 
 import React, { useState } from "react";
-import { Companies } from './Companies'
+import { Companies } from './components/Company/Companies'
 import './App.css';
-import { AddCompany } from './AddCompany'
-import { useCompanies } from "./Companies.hook";
-import EditCompanyForm from "./EditCompany";
+import Header from './components/Header/Header'
+import { AddCompany } from './components/Company/AddCompany'
+import { useCompanies } from "./containers/company/Companies.hook";
+import EditCompanyForm from "./components/Company/EditCompany";
 
 function App() {
   const initialFormState = { id: null, name: ''}
@@ -32,32 +33,6 @@ function App() {
   return (
     <div className="App">
        <Header/>
-    <div className="container">
-
-      <div className="flex-row">
-        <div className="flex-large">
-            {
-              editing ?(
-                      <>
-                          <h2>Edit Company</h2>
-                          <EditCompanyForm
-                            editing ={editing}
-                            setEditing={setEditing}
-                            currentCompany={currentCompany}
-                            updateCompany ={editCompany}
-                          />
-                      </>
-              ):(
-                <>
-                <h2>Add Company</h2>
-                <AddCompany addCompany={addCompany} />
-                </>
-              )}
-        </div>
-        <div className="flex-large">
-          <Companies editRow={editRow}  companis={companies} />
-        </div>
-      </div>
     </div>
   );
 }

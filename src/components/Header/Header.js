@@ -9,10 +9,11 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
-import {Companies} from './Companies';
-import {Computers} from './Computers';
-import {Login} from './Login';
-import {Footer} from './Footer';
+import {Companies} from '../Company/Companies';
+import {Computers} from '../Computer/Computers';
+import {Login} from '../Login/Login';
+import {Footer} from '../Footer/footer';
+
 export default function Header(){
     return(
 
@@ -49,21 +50,6 @@ export default function Header(){
       </Route>
       <Redirect exact from="/**" to="computers" />
     </Switch>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        {/* <Switch>
-        <Route path="/recipes">
-            <Recipes/>
-        </Route>
-        <Route path="/ingredrecip">
-            <Recipes/>
-            <Ingredients/>
-        </Route>
-        <Route path="/ingredients">
-            <Ingredients/>
-        </Route>
-        </Switch>*/}
      </Router> 
   );
 }
