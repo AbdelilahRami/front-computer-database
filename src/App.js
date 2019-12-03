@@ -30,6 +30,8 @@ function App() {
   console.log(currentCompany);
 
   return (
+    <div className="App">
+       <Header/>
     <div className="container">
 
       <div className="flex-row">

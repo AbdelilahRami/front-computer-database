@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router} from "react-router-dom";
+import { BrowserRouter as Router , Switch , Route , Link , Redirect } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -9,30 +9,46 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
-
+import {Companies} from './Companies';
+import {Computers} from './Computers';
+import {Login} from './Login';
+import {Footer} from './Footer';
 export default function Header(){
     return(
 
  <Router>
     <div>
         <Navbar color="light" light expand="md">
-            <NavbarBrand>Home Menu</NavbarBrand>
+            <NavbarBrand href="/computers">Home Menu</NavbarBrand>
             <NavbarToggler  />
             <Collapse navbar>
             <Nav className="mr-auto" navbar>
                 <NavItem>
-                    <NavLink >Companies</NavLink>
+                    <NavLink href="/companies" >Companies</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink >Computers</NavLink>
+                    <NavLink href="/computers" >Computers</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink >Login</NavLink>
+                    <NavLink href="/login">Login</NavLink>
                 </NavItem>
             </Nav>
             </Collapse>
         </Navbar>
     </div>
+    <Switch>
+      <Route path="/companies">
+           <Companies/>
+      </Route>
+      <Route path="/computers">
+           <Computers/>
+           <Footer/>
+      </Route>
+      <Route path="/login">
+          <Login/>
+      </Route>
+      <Redirect exact from="/**" to="computers" />
+    </Switch>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
