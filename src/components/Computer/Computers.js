@@ -46,6 +46,7 @@ export function Computers(){
         <Button onClick={() => showName()}>  Search </Button>
         <br/>
          <Label> Nombre d'ordinateurs : {count} </Label>
+         <Button>Add Computer</Button>
         <br/>
           <Table>
             <thead>
@@ -55,6 +56,7 @@ export function Computers(){
                 <th>Introduced</th>
                 <th>Discontinued</th>
                 <th>Company</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
