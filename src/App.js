@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Companies } from './Companies'
 import './App.css';
@@ -58,5 +59,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
