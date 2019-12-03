@@ -1,11 +1,13 @@
 import React,{useState} from 'react';
-import { useCompanies } from './Companies.hook';
 import {Table} from 'reactstrap';
 import {Company} from './Company'
+import { useCompanies } from './Companies.hook';
 
-export function Companies() {
-
-    const [companies, setCompanies] = useState(useCompanies());
+export function Companies({companis,editRow}) {
+    const initialFormState = { id: null, name: ''}
+    const [currentcompani, setCurrentCompani] = useState(initialFormState)
+    const [editing, setEditing] = useState(true)
+    console.log(companis)
     return (
         <div>
             <Table  responsive striped bordered hover width="50%" size="sm">
@@ -16,15 +18,17 @@ export function Companies() {
                     </tr>
                 </thead>
                 <tbody>
-                
-                        {companies.map(company => {
+                        {companis.map(company => {
                           return(
-                              <Company company = {company}                                 
-                              >
+                              <Company 
+                              
+                              company = {company}
+                              key={company.id}  
+                              edit={editRow}                           
+                              >console.log(company)
                               </Company>
                           )  
                         })}
-                    
                 </tbody>
              </Table>
         </div>
