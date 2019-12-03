@@ -3,18 +3,20 @@ import {Table} from 'reactstrap';
 import {Company} from './Company'
 import { useCompannies, useCompanies } from '../../containers/company/Companies.hook';
 import EditCompanyForm from './EditCompany';
+import AddCompany from './AddCompany';
 
 export function Companies({companis,editRow}) {
     const initialFormState = { id: null, name: ''}
     const [companies,setCompanies] =useState(useCompanies());
     const [currentCompany, setCurrentCompany] = useState(initialFormState)
     const [editing, setEditing] = useState(false);
-
+    const [adding, setAdding] = useState(false);
     function editRow(company)  {
         console.log('toto');
         setEditing(true)
         setCurrentCompany({id:company.id, name:company.name})
       }
+      console.log(adding);
       function addCompany(company) {
         company.id = companies.length + 1;
         companies.push(company);
@@ -27,7 +29,8 @@ export function Companies({companis,editRow}) {
       }
     return (
         <div>
-        {!editing ?<>
+        {!editing && !adding ?<>
+                    <button onClick={()=>setAdding(!adding)}>Add Company</button>
             <Table  responsive striped bordered hover width="50%" size="sm">
                 <thead>
                     <tr>
@@ -50,7 +53,12 @@ export function Companies({companis,editRow}) {
              </Table>
              
              </>
-             : 
+             : adding ?
+                        <>
+                        <h2>Add Company</h2>
+                        <AddCompany addCompany={addCompany} />
+                        </>
+                     :
              <>
                     <h2>Edit Company</h2>
                     <EditCompanyForm
