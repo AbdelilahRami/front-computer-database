@@ -15,7 +15,7 @@ export function Login() {
 
     return (
         <>
-            <Container className="">
+            <Container>
                 <Form className="form">
                 <Row><Col sm="3"><h2>Sign In</h2></Col></Row>
 

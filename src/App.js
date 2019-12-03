@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Companies } from './components/Company/Companies'
 import './App.css';
 import Header from './components/Header/Header'
-import { AddCompany } from './components/Company/AddCompany'
+import { AddCompany } from './components/Company/Add-company/AddCompany'
 import { useCompanies } from "./containers/company/Companies.hook";
-import EditCompanyForm from "./components/Company/EditCompany";
+import EditCompanyForm from "./components/Company/Edit-company/EditCompany";
 
 function App() {
   const initialFormState = { id: null, name: ''}
