@@ -1,5 +1,5 @@
 import React , { useState } from 'react';
-import { useComputers,deleteComputers,searchName, countComputers } from './Computers.hook.js'
+import { useComputers,deleteComputers,searchName, countComputers } from '../../containers/computer/Computers.hook'
 import  Computer  from './Computer'
 import { Table } from 'reactstrap';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
