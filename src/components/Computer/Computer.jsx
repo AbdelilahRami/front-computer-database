@@ -10,6 +10,7 @@ const {id,name,introduced,discontinued,companyDTO}=computer
             <td>{introduced}</td>
             <td>{discontinued}</td>
             <td>{companyDTO!=null?companyDTO.name:null}</td>
+            <td><button className="button muted-button" >Edit</button></td>
           </tr>
     )
 }
