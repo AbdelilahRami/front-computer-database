@@ -11,7 +11,19 @@ export function Computers(){
 
   const [page,setPage]=useState({search:'',limite:10,actPage:1})
   const [computers,setComputers]=useState({listComputer:[],nbComputer:0})
+  const [statenumbers,setnumbers]=useState()
   let ids=[]
+  
+  function recupererActualPage(actual){
+    setPage({ ...page,actPage:actual })
+    console.log(actual)
+  }
+
+  function recupererLimite(mylimit){
+    setPage({ ...page, limite: mylimit,actPage:1 })
+    var resulte = Math.round(computers.nbComputer / mylimit)
+    setnumbers(resulte)
+  }
 
   useEffect( () => 
   getComputer(page).then(
@@ -79,7 +91,8 @@ export function Computers(){
               )}         
             </tbody>
         </Table>
-        <Footer nbComputer = {computers.nbComputer}/>
+
+        <Footer recupererLimite={recupererLimite} statenumbers={statenumbers} recupererActualPage={recupererActualPage}/>
     </div>
   )
 }
