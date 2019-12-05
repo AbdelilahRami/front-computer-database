@@ -1,20 +1,40 @@
 import React, { useState } from 'react';
-import { Input, Button, FormGroup,Label,Form } from 'reactstrap';
+import useForm from './useform';
+import validate from './validateForm';
+import './Add-computer.css'
 
-function AddComputer() {
+import { Input, Button, FormGroup, Label, Form } from 'reactstrap';
+import { useCompanies } from '../../../containers/company/Companies.hook';
 
+function AddComputer({ addComputer }) {
+  const { handleChange, handleSubmit,getCompanyDTO, computer, errors } = useForm(
+    submit,
+    validate
+  );
+  function submit(){
+    console.log(computer)
+    addComputer(computer)
 
+  }
+  const [companies, setCompanies] = useState(useCompanies());
+ 
+  return (
+    <Form className="form"
+      onSubmit={handleSubmit}
 
-    return (
-        <Form className="form">
+    >
+    <h2>Adding Computer Form</h2>
       <FormGroup>
         <Label for="exampleDatetime">Name</Label>
         <Input
           type="text"
-          name="computerName"
+          name="name"
+          value={computer.name}
+          onChange={handleChange}
           id="name"
           placeholder="computer Name"
         />
+        {errors.name && <p className="Stylish">{errors.name}</p>}
       </FormGroup>
       <FormGroup>
         <Label for="exampleDate">Introduced Date</Label>
@@ -22,32 +42,34 @@ function AddComputer() {
           type="date"
           name="introduced"
           id="introduced"
+          value={computer.introduced}
+          onChange={handleChange}
           placeholder="Introduced date"
         />
       </FormGroup>
       <FormGroup>
-      <Label for="exampleDate">Discontinued Date</Label>
-      <Input
-        type="date"
-        name="discontinued"
-        id="discontinued"
-        placeholder="discontinued date"
-      />
-    </FormGroup>
+        <Label for="exampleDate">Discontinued Date</Label>
+        <Input
+          type="date"
+          value={computer.discontinued}
+          name="discontinued"
+          onChange={handleChange}
+          id="discontinued"
+          placeholder="discontinued date"
+        />
+        {errors.introduced && <p className="Stylish">{errors.introduced}</p>}
 
+      </FormGroup>
       <FormGroup>
         <Label for="exampleSelect">Company</Label>
-        <Input type="select" name="select" id="exampleSelect">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <Input type="select" onChange={getCompanyDTO} name="select" id="exampleSelect">
+          <option key="0" value="" selected></option>
+          {companies.map(company => <option value={company.name} key={company.id} >{company.name}</option>)}
         </Input>
       </FormGroup>
+      <button>Add Computer</button>
+      <p></p>
     </Form>
-    )
-
-
+  )
 }
 export default AddComputer;

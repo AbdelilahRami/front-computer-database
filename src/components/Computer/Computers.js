@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Col, Row} from 'reactstrap'
 import AddComputer from './Add-computer/AddComputer'
 import { useComputers, deleteComputers, searchName, countComputers } from '../../containers/computer/Computers.hook'
 import Computer from './Computer'
@@ -6,14 +7,19 @@ import { Table } from 'reactstrap';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Input, Button, Label } from 'reactstrap';
+import EditComputer from './Edit-Computer/EditComputer'
 
-export function Computers() {
+export function Computers({editRow}) {
 
-  const [statechampSearch, setchampSearch] = useState()
+  const [statechampSearch, setchampSearch] = useState();
+  //state for adding mode and editing mode
   const [addingMode, setAdding] = useState(false);
-  console.log(useComputers())
-  console.log(addingMode);
-  const [computers] = useState(useComputers())
+  const [EditingMode, setEditingMode] = useState(false);
+  //initial inputs form : we use it in editing form
+  const initialEditingForm={id:null,name:'',introduced:'',discontinued:'',companyDTO:{id:null,name:''}};
+  //initial state for computer
+  const[currentComputer,setCurrentComputer]=useState(initialEditingForm);
+  const [computers,setComputers] = useState(useComputers())
   const count = useState(countComputers())
 
   let ids = []
@@ -42,17 +48,50 @@ export function Computers() {
   function showName() {
     searchName(statechampSearch);
   }
+
+  function addComputer(computer){
+    setAdding(false);
+    computer.id=computers.length+1;
+    computers.push(computer)
+    console.log(computers);
+  }
+  function editRow(computer){
+    setAdding(false);
+    setEditingMode(true);
+    setCurrentComputer({id:computer.id,
+                        name:computer.name,
+                        introduced:computer.introduced,
+                        discontinued:computer.discontinued
+                        })
+  }
+  function editComputer(id, updatedComputer) {
+    console.log('im inediting')
+    setComputers(computers.map(computer => (computer.id === id ? updatedComputer : computer)))
+    setEditingMode(false)
+  }
+
+
   return (
     <div>
-    <Button className="btn btn-secondary float-right" onClick={() => setAdding(!addingMode)}>Add Computer</Button>
+    {
+
+      !addingMode && !EditingMode ?
+      <>
+      <Row>
+      <Col md={4}>
+      <Button className="btn btn-secondary float-right" onClick={() => setAdding(!addingMode)}>Add Computer</Button>
+      </Col>
+      <Col md={2}>
       <input style={{ width: "300px", align: "center" }} type="text" placeholder="Veuillez saisir un nom de computer " onChange={event => setchampSearch(event.target.value)} />
-      <Button onClick={() => showName()}>  Search </Button>
+      </Col>
+      <Col md={4}>
+      <Button onClick={() => showName()}>Search</Button>
+      </Col>
+      </Row>
       <br />
       <Label> Nombre d'ordinateurs : {count} </Label>
-      <br />{
-
-        !addingMode ?
-          <>
+      <br />
+          
             <Table>
               <thead>
                 <tr>
@@ -68,15 +107,20 @@ export function Computers() {
                 {computers.map(computer =>
                   <Computer computer={computer}
                     key={computer.id}
+                    edit={editRow}
                     checkFun={checkFun}
                   />
                 )}
               </tbody>
             </Table>
           </>
+          : addingMode ?
+          <>
+            <AddComputer addComputer={addComputer} />
+          </>
           :
           <>
-            <AddComputer />
+            <EditComputer updateComputer={editComputer}  currentComputer={currentComputer}/>
           </>
       }
     </div>
