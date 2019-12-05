@@ -9,17 +9,15 @@ import { Button } from 'reactstrap';
 export function Computers(){
 
   const [page,setPage]=useState({search:'',limite:10,actPage:5})
-  const [computers,setComputers]=useState([])
-  const [nbComputer,setNbComputer]=useState(0)
-  let ids=[]  
+  const [computers,setComputers]=useState({listComputer:[],nbComputer:0})
+  let ids=[]
 
-  useEffect(
-    () => getComputer(page).then(
-      response => {
-        setComputers(response.data.listComputer ||[])
-        setNbComputer(response.data.nbComputer)
-      }
-    ) ,[])
+  useEffect( () => 
+  getComputer(page).then(
+    response => {
+      setComputers(response.data ||[])
+    }
+    ),[])
 
   function arrayRemove(arr, value) {
     return arr.filter(function(ele){
@@ -35,20 +33,19 @@ export function Computers(){
     }
   }
 
-  function deleteFunction () {
+  function deleteFunction(){
     deleteComputers(ids)
     ids=[]
     getComputer(page).then(response => {
-      setComputers(response.data.listComputer ||[])
-      setNbComputer(response.data.nbComputer)
+      setComputers(response.data ||[])
     })
   }
+  
 
   function showName(){
     getComputer(page).then(
       response => {
-        setComputers(response.data.listComputer ||[])
-        setNbComputer(response.data.nbComputer)
+        setComputers(response.data ||[])
       }
     )
   }
@@ -58,12 +55,12 @@ export function Computers(){
         <input style={{width:"300px",align:"center"}} type="text" placeholder="Veuillez saisir un nom de computer " onChange={event =>setPage({...page,search:event.target.value})} />
         <Button onClick={() => showName()}>  Search </Button>
         <br/>
-         Nombre d'ordinateurs : {nbComputer} 
+         Nombre d'ordinateurs : {computers.nbComputer} 
         <br/>
           <Table>
             <thead>
               <tr>
-                <th>#  <FontAwesomeIcon icon={faTrash} onClick={deleteFunction()}/> </th>
+                <th>#  <FontAwesomeIcon icon={faTrash} onClick={deleteFunction}/> </th>
                 <th>Name</th>
                 <th>Introduced</th>
                 <th>Discontinued</th>
@@ -71,7 +68,7 @@ export function Computers(){
               </tr>
             </thead>
             <tbody>
-              {computers.map(computer =>
+              {computers.listComputer.map(computer =>
                     <Computer computer={computer}
                               key={computer.id}
                               checkFun={checkFun}
