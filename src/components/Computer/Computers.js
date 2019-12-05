@@ -5,10 +5,11 @@ import { Table } from 'reactstrap';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'reactstrap';
+import Footer from '../Footer/footer';
 
 export function Computers(){
 
-  const [page,setPage]=useState({search:'',limite:10,actPage:5})
+  const [page,setPage]=useState({search:'',limite:10,actPage:1})
   const [computers,setComputers]=useState({listComputer:[],nbComputer:0})
   let ids=[]
 
@@ -78,6 +79,7 @@ export function Computers(){
               )}         
             </tbody>
         </Table>
+        <Footer nbComputer = {computers.nbComputer}/>
     </div>
   )
 }

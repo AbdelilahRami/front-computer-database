@@ -3,16 +3,14 @@ import { Navbar, NavbarBrand, Container, Input } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import { actualPage } from '../../containers/computer/Computers.hook';
-import { countComputers } from '../../containers/computer/Computers.hook'
-import { exportDefaultSpecifier } from '@babel/types';
 
-export function Footer() {
+export default function Footer({nbComputer}) {
 
     const [objectToSend, setObject] = useState({ limite: 10, actPage: 1 })
-    const [stategauche, setgauche] = useState()
-    const [statedroite, setdroite] = useState()
-    const [statecount, setcount] = useState(countComputers())
-    const [statenumbers, setnumbers] = useState()
+    const [stategauche, setgauche] = useState(true)
+    const [statedroite, setdroite] = useState(false)
+    const [statecount, setcount] = useState(nbComputer)
+    const [statenumbers, setnumbers] = useState(0)
 
     function showLimit() {
         //limitPage(statelist);
@@ -26,21 +24,21 @@ export function Footer() {
     }
 
     function iterateButton() {
-        if (objectToSend.actPage == 1) {
+        if (objectToSend.actPage === 1) {
             return (
                 <>
                     <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(objectToSend.actPage + 1)}>{objectToSend.actPage + 1}</button>
                     <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(objectToSend.actPage + 2)}>{objectToSend.actPage + 2}</button>
                 </>
             )
-        } else if (objectToSend.actPage == statenumbers) {
+        } else if (objectToSend.actPage === statenumbers) {
             return (
                 <>
                     <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(objectToSend.actPage - 2)}>{objectToSend.actPage - 2}</button>
                     <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(objectToSend.actPage - 1)}>{objectToSend.actPage - 1}</button>
                 </>
             )
-        }else if(objectToSend.actPage==2){
+        }else if(objectToSend.actPage===2){
             return(
             <>
             <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(objectToSend.actPage)}>{objectToSend.actPage}</button>
@@ -48,7 +46,7 @@ export function Footer() {
             <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(objectToSend.actPage + 2)}>{objectToSend.actPage + 2}</button> 
             </>
             )
-        }else if(objectToSend.actPage==3){
+        }else if(objectToSend.actPage===3){
            return( <>
             <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(objectToSend.actPage - 1)}>{objectToSend.actPage - 1}</button>
             <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(objectToSend.actPage)}>{objectToSend.actPage}</button>
@@ -56,14 +54,14 @@ export function Footer() {
             <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(objectToSend.actPage + 2)}>{objectToSend.actPage + 2}</button> 
             </>
             )
-        }else if(objectToSend.actPage==statenumbers-1){
+        }else if(objectToSend.actPage===statenumbers-1){
             return( <>
                 <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(objectToSend.actPage - 2)}>{objectToSend.actPage - 2}</button>
                 <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(objectToSend.actPage - 1)}>{objectToSend.actPage - 1}</button>
                 <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(objectToSend.actPage)}>{objectToSend.actPage}</button>
                 </>
                 )
-        }else if(objectToSend.actPage==statenumbers-2){
+        }else if(objectToSend.actPage===statenumbers-2){
             return( <>
                 <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(objectToSend.actPage - 2)}>{objectToSend.actPage - 2}</button>
                 <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(objectToSend.actPage - 1)}>{objectToSend.actPage - 1}</button>
@@ -99,9 +97,9 @@ export function Footer() {
     }
 
     function pageIteration(bool) {
-        if (bool == true ) {
+        if (bool === true ) {
             showButton(objectToSend.actPage - 1)
-        } else if(bool==false){
+        } else if(bool===false){
             showButton(objectToSend.actPage + 1)
         }
     }
