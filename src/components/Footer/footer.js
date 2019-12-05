@@ -15,7 +15,7 @@ const numbers=[1,2,3,4,5,6,7,8,9,10]
                     {
                         numbers.map(number =>
                             
-                         <button style={{color:'white',backgroundColor:'blue'}}>{number}</button>
+                         <button key={number} style={{color:'white',backgroundColor:'blue'}}>{number}</button>
                         )
                     }
                     <FontAwesomeIcon style ={{color:'white'}} icon={faAngleDoubleRight} onClick={() => {}}/>
