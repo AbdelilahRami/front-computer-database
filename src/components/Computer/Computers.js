@@ -40,7 +40,9 @@ export function Computers(){
   }
 
   const deleteFunction = useCallback ( 
-    () => {deleteComputers(ids)
+    () => {
+      deleteComputers(ids)
+      ids=[]
       getComputer(page).then(response => {
         setComputers(response.data.listComputer ||[])
         setNbComputer(response.data.nbComputer)
