@@ -1,16 +1,10 @@
 import {MOCK_COMPUTERS} from '../../Mock'
+import {getComputers, deleteComputer} from '../../api/computer.api'
 
-export function useComputers(){
-    return(MOCK_COMPUTERS.list_computer)
+export async function getComputer(page){
+    return await getComputers(page)
 }
 
-export function deleteComputers(tableau){
-    console.log(tableau)
-}
-
-export function searchName(champ){
-    console.log(champ)
-}
-export function countComputers(){
-   return(MOCK_COMPUTERS.nb_computer)
+export async function deleteComputers(tableau){
+    return await deleteComputer(tableau)
 }

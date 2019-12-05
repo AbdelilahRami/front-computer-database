@@ -1,27 +1,34 @@
-import React , { useState } from 'react';
-import { useComputers,deleteComputers,searchName, countComputers } from '../../containers/computer/Computers.hook'
+import React , { useState, useEffect, useCallback } from 'react';
+import { getComputer,deleteComputers} from '../../containers/computer/Computers.hook'
 import  Computer  from './Computer'
 import { Table } from 'reactstrap';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Input , Button , Label} from 'reactstrap';
+import { Button } from 'reactstrap';
 
 export function Computers(){
+  // const page = {search:'Apple',limite:10,actPage:5}
 
+  // const remoteComputer = getComputer(page) || []
+  // remoteComputer.then(res=>console.log(computers))
+  const [page,setPage]=useState({search:'',limite:10,actPage:5})
   const [statechampSearch,setchampSearch]=useState()
-  console.log(useComputers())
-
-  const [computers]=useState(useComputers())
-  const count=useState(countComputers())
-
+  const [computers,setComputers]=useState([])
+  const [nbComputer,setNbComputer]=useState(0)
   let ids=[]  
-  
-  function arrayRemove(arr, value) {
 
+  useEffect(
+    () => getComputer(page).then(
+      response => {
+        setComputers(response.data.listComputer ||[])
+        setNbComputer(response.data.nbComputer)
+      }
+    ) ,[])
+
+  function arrayRemove(arr, value) {
     return arr.filter(function(ele){
         return ele !== value;
     });
- 
  }
 
   function checkFun(id){
@@ -30,27 +37,37 @@ export function Computers(){
     }else{
        ids=arrayRemove(ids,id);
     }
-    console.log(ids);
   }
 
-  function deleteFunction(){
-    deleteComputers(ids);
-  }
+  const deleteFunction = useCallback ( 
+    () => {deleteComputers(ids)
+      getComputer(page).then(response => {
+        setComputers(response.data.listComputer ||[])
+        setNbComputer(response.data.nbComputer)
+      })
+    }
+  )
 
   function showName(){
-    searchName(statechampSearch);
+    getComputer(page).then(
+      response => {
+        setComputers(response.data.listComputer ||[])
+        setNbComputer(response.data.nbComputer)
+      }
+    )
   }
+
   return(
     <div>
-        <input style={{width:"300px",align:"center"}} type="text" placeholder="Veuillez saisir un nom de computer " onChange={event =>setchampSearch(event.target.value)} />
+        <input style={{width:"300px",align:"center"}} type="text" placeholder="Veuillez saisir un nom de computer " onChange={event =>setPage({...page,search:event.target.value})} />
         <Button onClick={() => showName()}>  Search </Button>
         <br/>
-         <Label> Nombre d'ordinateurs : {count} </Label>
+         Nombre d'ordinateurs : {nbComputer} 
         <br/>
           <Table>
             <thead>
               <tr>
-                <th>#  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()}/> </th>
+                <th>#  <FontAwesomeIcon icon={faTrash} onClick={deleteFunction}/> </th>
                 <th>Name</th>
                 <th>Introduced</th>
                 <th>Discontinued</th>
@@ -66,6 +83,6 @@ export function Computers(){
               )}         
             </tbody>
         </Table>
-      </div>
+    </div>
   )
 }
