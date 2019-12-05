@@ -1,23 +1,37 @@
-import React , { useState } from 'react';
-import { Input , Button , Label} from 'reactstrap';
+import React, { useState } from 'react';
+import { Input, Button, Label } from 'reactstrap';
 import { authentificatePage } from '../../containers/Login/Login.hook'
+import { Redirect } from 'react-router-dom'
 
-export function Login(){
-const [stateLogin,setLogin]=useState({username :"", password:""})
+export function Login() {
 
-    function show(){
-        authentificatePage(stateLogin).then(responce=>console.log(responce.data))
+    const [indetifiant, setIndetifiant] = useState({ username: "", password: "" })
+    const [login, setLogin] = useState(false)
+    const [error, setError] = useState(false)
+
+    function show() {
+        authentificatePage(indetifiant).then(responce => {
+            console.log(responce)
+            setLogin(true)
+        })
+        .catch(error=> setError(true))
     }
 
-    return(
-        <form>
-           <Label> Login :</Label>
-           <Input type="text" name="username" onChange={event =>setLogin({...stateLogin,username:event.target.value})}></Input>
+    return (
+        <>
+        {error? <div>Error de connection, identifiant ou mot de passe incorrect</div>:<></>}
+            {login ? <Redirect to="/computers" /> :
 
-           <Label> Password :</Label>
-           <Input type="password" name="password" onChange={event =>setLogin({...stateLogin,password:event.target.value})}></Input>
+            
+                <form>
+                    <Label> Login :</Label>
+                    <Input type="text" name="username" onChange={event => setIndetifiant({ ...indetifiant, username: event.target.value })}></Input>
 
-           <Button onClick={() => show()}>Submit</Button>
-        </form>
+                    <Label> Password :</Label>
+                    <Input type="password" name="password" onChange={event => setIndetifiant({ ...indetifiant, password: event.target.value })}></Input>
+
+                    <Button onClick={() => show()}>Submit</Button>
+                </form>}
+        </>
     )
 }

@@ -72,10 +72,10 @@ export function Computers(){
             </thead>
             <tbody>
               {computers.listComputer.map(computer =>
-                    <Computer computer={computer}
-                              key={computer.id}
-                              checkFun={checkFun}
-                    />
+                <Computer computer={computer}
+                          key={computer.id}
+                          checkFun={checkFun}
+                />
               )}         
             </tbody>
         </Table>
