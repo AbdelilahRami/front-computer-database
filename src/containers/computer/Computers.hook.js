@@ -1,4 +1,3 @@
-import {MOCK_COMPUTERS} from '../../Mock'
 import {getComputers, deleteComputer} from '../../api/computer.api'
 
 export async function getComputer(page){

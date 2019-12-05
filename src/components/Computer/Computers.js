@@ -1,4 +1,4 @@
-import React , { useState, useEffect, useCallback } from 'react';
+import React , { useState, useEffect } from 'react';
 import { getComputer,deleteComputers} from '../../containers/computer/Computers.hook'
 import  Computer  from './Computer'
 import { Table } from 'reactstrap';
@@ -7,12 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'reactstrap';
 
 export function Computers(){
-  // const page = {search:'Apple',limite:10,actPage:5}
 
-  // const remoteComputer = getComputer(page) || []
-  // remoteComputer.then(res=>console.log(computers))
   const [page,setPage]=useState({search:'',limite:10,actPage:5})
-  const [statechampSearch,setchampSearch]=useState()
   const [computers,setComputers]=useState([])
   const [nbComputer,setNbComputer]=useState(0)
   let ids=[]  
@@ -39,16 +35,14 @@ export function Computers(){
     }
   }
 
-  const deleteFunction = useCallback ( 
-    () => {
-      deleteComputers(ids)
-      ids=[]
-      getComputer(page).then(response => {
-        setComputers(response.data.listComputer ||[])
-        setNbComputer(response.data.nbComputer)
-      })
-    }
-  )
+  function deleteFunction () {
+    deleteComputers(ids)
+    ids=[]
+    getComputer(page).then(response => {
+      setComputers(response.data.listComputer ||[])
+      setNbComputer(response.data.nbComputer)
+    })
+  }
 
   function showName(){
     getComputer(page).then(
@@ -69,7 +63,7 @@ export function Computers(){
           <Table>
             <thead>
               <tr>
-                <th>#  <FontAwesomeIcon icon={faTrash} onClick={deleteFunction}/> </th>
+                <th>#  <FontAwesomeIcon icon={faTrash} onClick={deleteFunction()}/> </th>
                 <th>Name</th>
                 <th>Introduced</th>
                 <th>Discontinued</th>
