@@ -3,11 +3,10 @@ import { Input , Button , Label} from 'reactstrap';
 import { authentificatePage } from '../../containers/Login/Login.hook'
 
 export function Login(){
-const authentificate={ username :"", password:""}
-const [stateLogin,setLogin]=useState(authentificate)
+const [stateLogin,setLogin]=useState({username :"", password:""})
 
     function show(){
-        authentificatePage(stateLogin)
+        authentificatePage(stateLogin).then(responce=>console.log(responce.data))
     }
 
     return(
