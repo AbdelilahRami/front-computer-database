@@ -91,7 +91,7 @@ export default function Footer({recupererLimite,statenumbers,recupererActualPage
     }
 
     return (
-        <div className="fixed-bottom">
+        <footer className="fixed-bottom" style={{marginTop: 'auto'}}>
             <Navbar color="dark" dark>
                 <Container>
                     <NavbarBrand>2019-2020</NavbarBrand>
@@ -116,6 +116,6 @@ export default function Footer({recupererLimite,statenumbers,recupererActualPage
 
                 </Container>
             </Navbar>
-        </div>
+        </footer>
     )
                 }
