@@ -95,11 +95,11 @@ export default function Footer({recupererLimite,statenumbers,recupererActualPage
         <StickyFooter
         bottomThreshold={50}
         normalStyles={{
-        backgroundColor: "#999999",
+        backgroundColor: "dark",
         padding: "2rem"
         }}
         stickyStyles={{
-        backgroundColor: "rgba(255,255,255,.8)",
+        backgroundColor: "dark",
         padding: "2rem"
         }}
     >
@@ -117,7 +117,7 @@ export default function Footer({recupererLimite,statenumbers,recupererActualPage
                     {
                        actPage >=statenumbers-3?<></>:<button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => {}}>...</button>
                     }
-                    <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(statenumbers)}>{statenumbers}</button>
+                    <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(statenumbers)}>{statenumbers}</button>
                     {statedroite ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleRight} onClick={() => pageIteration(false)} /> : <></>}
                     <Input style={{ width: '75px' }} type="select" onChange={(event) => recupererLimite(event.target.value)} >
                         <option>10</option>
