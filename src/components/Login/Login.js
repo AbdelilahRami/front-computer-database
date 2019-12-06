@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input, Button, Label } from 'reactstrap';
 import { authentificatePage } from '../../containers/Login/Login.hook'
 import { Redirect } from 'react-router-dom'
+import AuthenticationService from './AuthenticationService'
 
 export function Login() {
 
@@ -11,18 +12,18 @@ export function Login() {
 
     function show() {
         authentificatePage(indetifiant).then(responce => {
-            console.log(responce)
             setLogin(true)
+            AuthenticationService.registerSuccessfulLoginForJwt(indetifiant.username,responce)
         })
-        .catch(error=> setError(true))
+        .catch(()=> setError(true))
     }
 
     return (
         <>
         {error? <div>Error de connection, identifiant ou mot de passe incorrect</div>:<></>}
+
             {login ? <Redirect to="/computers" /> :
 
-            
                 <form>
                     <Label> Login :</Label>
                     <Input type="text" name="username" onChange={event => setIndetifiant({ ...indetifiant, username: event.target.value })}></Input>
