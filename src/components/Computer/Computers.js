@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+
 import { Col, Row} from 'reactstrap'
-import AddComputer from './Add-computer/AddComputer'
-import { useComputers, deleteComputers, searchName, countComputers } from '../../containers/computer/Computers.hook'
-import Computer from './Computer'
+import AddComputer from './Add-computer/AddComputer''
+import { Input, Button, Label } from 'reactstrap';
+import EditComputer from './Edit-Computer/EditComputer'
+import React , { useState, useEffect } from 'react';
+import { getComputer,deleteComputers} from '../../containers/computer/Computers.hook'
+import  Computer  from './Computer'
 import { Table } from 'reactstrap';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Input, Button, Label } from 'reactstrap';
-import EditComputer from './Edit-Computer/EditComputer'
+import Footer from '../Footer/footer';
+
 
 export function Computers({editRow}) {
 
@@ -20,15 +23,36 @@ export function Computers({editRow}) {
   //initial state for computer
   const[currentComputer,setCurrentComputer]=useState(initialEditingForm);
   const [computers,setComputers] = useState(useComputers())
-  const count = useState(countComputers())
 
-  let ids = []
+
+  const [page,setPage]=useState({search:'',limite:10,actPage:1})
+  const [computers,setComputers]=useState({listComputer:[],nbComputer:0})
+  const [statenumbers,setnumbers]=useState()
+  let ids=[]
+  
+  function recupererActualPage(actual){
+    setPage({ ...page,actPage:actual })
+    console.log(actual)
+  }
+
+  function recupererLimite(mylimit){
+    setPage({ ...page, limite: mylimit,actPage:1 })
+    var resulte = Math.round(computers.nbComputer / mylimit)
+    setnumbers(resulte)
+  }
+
+  useEffect( () => 
+  getComputer(page).then(
+    response => {
+      setComputers(response.data ||[])
+    }
+    ),[])
 
   function arrayRemove(arr, value) {
-
-    return arr.filter(function (ele) {
-      return ele !== value;
+    return arr.filter(function(ele){
+        return ele !== value;
     });
+ }
 
   }
 
@@ -38,17 +62,17 @@ export function Computers({editRow}) {
     } else {
       ids = arrayRemove(ids, id);
     }
-    console.log(ids);
   }
 
-  function deleteFunction() {
-    deleteComputers(ids);
-  }
 
-  function showName() {
-    searchName(statechampSearch);
+  function deleteFunction(){
+    deleteComputers(ids)
+    ids=[]
+    getComputer(page).then(response => {
+      setComputers(response.data ||[])
+    })
   }
-
+  
   function addComputer(computer){
     setAdding(false);
     computer.id=computers.length+1;
@@ -113,6 +137,7 @@ export function Computers({editRow}) {
                 )}
               </tbody>
             </Table>
+          <Footer recupererLimite={recupererLimite} statenumbers={statenumbers} recupererActualPage={recupererActualPage}/>
           </>
           : addingMode ?
           <>
@@ -123,6 +148,15 @@ export function Computers({editRow}) {
             <EditComputer updateComputer={editComputer}  currentComputer={currentComputer}/>
           </>
       }
+  function showName(){
+    getComputer(page).then(
+      response => {
+        setComputers(response.data ||[])
+      }
+    )
+  }
+
+  
     </div>
   )
 }

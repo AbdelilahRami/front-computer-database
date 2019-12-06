@@ -1,34 +1,121 @@
-import React  from 'react';
-import { Navbar, NavbarBrand , Container ,Input} from 'reactstrap';
+import React, { useState } from 'react';
+import { Navbar, NavbarBrand, Container, Input } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleLeft,faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
-export function Footer() {
+export default function Footer({recupererLimite,statenumbers,recupererActualPage}) {
     
-const numbers=[1,2,3,4,5,6,7,8,9,10]
-    return(
-<div className="fixed-bottom">  
+    const [actPage, setActPage] = useState(1)
+    const [stategauche, setgauche] = useState(true)
+    const [statedroite, setdroite] = useState(false)
+
+    function iterateButton() {
+        if (actPage === 1) {
+            return (
+                <>
+                    <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage + 1)}>{actPage + 1}</button>
+                    <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage + 2)}>{actPage + 2}</button>
+                </>
+            )
+        } else if (actPage === statenumbers) {
+            return (
+                <>
+                    <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage - 2)}>{actPage - 2}</button>
+                    <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage - 1)}>{actPage - 1}</button>
+                </>
+            )
+        }else if(actPage===2){
+            return(
+            <>
+            <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(actPage)}>{actPage}</button>
+            <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage + 1)}>{actPage + 1}</button>
+            <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage + 2)}>{actPage + 2}</button> 
+            </>
+            )
+        }else if(actPage===3){
+           return( <>
+            <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage - 1)}>{actPage - 1}</button>
+            <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(actPage)}>{actPage}</button>
+            <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage + 1)}>{actPage + 1}</button>
+            <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage + 2)}>{actPage + 2}</button> 
+            </>
+            )
+        }else if(actPage===statenumbers-1){
+            return( <>
+                <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage - 2)}>{actPage - 2}</button>
+                <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage - 1)}>{actPage - 1}</button>
+                <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(actPage)}>{actPage}</button>
+                </>
+                )
+        }else if(actPage===statenumbers-2){
+            return( <>
+                <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage - 2)}>{actPage - 2}</button>
+                <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage - 1)}>{actPage - 1}</button>
+                <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(actPage)}>{actPage}</button>
+                <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage + 1)}>{actPage + 1}</button>
+                </>
+                )
+        }else{
+            return( <>
+                <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage - 2)}>{actPage - 2}</button>
+                <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage - 1)}>{actPage - 1}</button>
+                <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(actPage)}>{actPage}</button>
+                <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage + 1)}>{actPage + 1}</button>
+                <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(actPage + 2)}>{actPage + 2}</button>
+                </>
+                )
+        }
+    }
+
+    function showButton(page) {
+        if (page === 1) {
+            setgauche(false);
+            setdroite(true);
+        } else if (page === statenumbers) {
+            setgauche(true);
+            setdroite(false);
+        } else {
+            setgauche(true);
+            setdroite(true);
+        }
+        setActPage(page)
+        recupererActualPage(page)
+    }
+
+    function pageIteration(bool) {
+        if (bool === true ) {
+            showButton(actPage - 1)
+        } else if(bool===false){
+            showButton(actPage + 1)
+        }
+    }
+
+    return (
+        <div className="fixed-bottom">
             <Navbar color="dark" dark>
                 <Container>
-                 <NavbarBrand>2019-2020</NavbarBrand>
-                   <FontAwesomeIcon style ={{color:'white'}} icon={faAngleDoubleLeft} onClick={() => {}}/>
+                    <NavbarBrand>2019-2020</NavbarBrand>
+                    {stategauche ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleLeft} onClick={() => pageIteration(true)} /> : <></>}
+                    <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(1)}>1</button>
                     {
-                        numbers.map(number =>
-                            
-                         <button style={{color:'white',backgroundColor:'blue'}}>{number}</button>
-                        )
+                       actPage <=4?<></>:<button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => {}}>...</button>
                     }
-                    <FontAwesomeIcon style ={{color:'white'}} icon={faAngleDoubleRight} onClick={() => {}}/>
-               
-               
-                    <Input style ={{width:'75px'}} type="select">
-                        <option>{numbers[5]}</option>
-                        <option>{numbers[8]}</option>
-                        <option>{numbers[9]}</option>
+                    {
+                        iterateButton()
+                    }
+                    {
+                       actPage >=statenumbers-3?<></>:<button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => {}}>...</button>
+                    }
+                    <button style={{ color: 'white', backgroundColor: 'blue' }} onClick={() => showButton(statenumbers)}>{statenumbers}</button>
+                    {statedroite ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleRight} onClick={() => pageIteration(false)} /> : <></>}
+                    <Input style={{ width: '75px' }} type="select" onChange={(event) => recupererLimite(event.target.value)} >
+                        <option>10</option>
+                        <option>30</option>
+                        <option>60</option>
                     </Input>
-                
+
                 </Container>
             </Navbar>
         </div>
     )
-}
+                }

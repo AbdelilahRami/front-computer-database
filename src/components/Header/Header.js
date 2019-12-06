@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router , Switch , Route , Link , Redirect } from "react-router-dom";
+import { BrowserRouter as Router , Switch , Route , Redirect } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -12,7 +12,6 @@ import {
 import {Companies} from '../Company/Companies';
 import {Computers} from '../Computer/Computers';
 import {Login} from '../Login/Login';
-import {Footer} from '../Footer/footer';
 
 export default function Header(){
     return(
@@ -43,7 +42,6 @@ export default function Header(){
       </Route>
       <Route path="/computers">
            <Computers/>
-           <Footer/>
       </Route>
       <Route path="/login">
           <Login/>
