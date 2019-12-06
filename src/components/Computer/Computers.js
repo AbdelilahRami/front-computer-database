@@ -1,6 +1,5 @@
-
 import { Col, Row} from 'reactstrap'
-import AddComputer from './Add-computer/AddComputer''
+import AddComputer from './Add-computer/AddComputer';
 import { Input, Button, Label } from 'reactstrap';
 import EditComputer from './Edit-Computer/EditComputer'
 import React , { useState, useEffect } from 'react';
@@ -10,7 +9,6 @@ import { Table } from 'reactstrap';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../Footer/footer';
-
 
 export function Computers({editRow}) {
 
@@ -22,9 +20,7 @@ export function Computers({editRow}) {
   const initialEditingForm={id:null,name:'',introduced:'',discontinued:'',companyDTO:{id:null,name:''}};
   //initial state for computer
   const[currentComputer,setCurrentComputer]=useState(initialEditingForm);
-  const [computers,setComputers] = useState(useComputers())
-
-
+  //const [computers,setComputers] = useState(useComputers())
   const [page,setPage]=useState({search:'',limite:10,actPage:1})
   const [computers,setComputers]=useState({listComputer:[],nbComputer:0})
   const [statenumbers,setnumbers]=useState()
@@ -34,28 +30,23 @@ export function Computers({editRow}) {
     setPage({ ...page,actPage:actual })
     console.log(actual)
   }
-
   function recupererLimite(mylimit){
     setPage({ ...page, limite: mylimit,actPage:1 })
     var resulte = Math.round(computers.nbComputer / mylimit)
     setnumbers(resulte)
   }
-
   useEffect( () => 
   getComputer(page).then(
     response => {
       setComputers(response.data ||[])
     }
     ),[])
-
   function arrayRemove(arr, value) {
     return arr.filter(function(ele){
         return ele !== value;
     });
  }
-
-  }
-
+  
   function checkFun(id) {
     if (!ids.includes(id)) {
       ids.push(id);
@@ -63,7 +54,6 @@ export function Computers({editRow}) {
       ids = arrayRemove(ids, id);
     }
   }
-
 
   function deleteFunction(){
     deleteComputers(ids)
@@ -79,6 +69,7 @@ export function Computers({editRow}) {
     computers.push(computer)
     console.log(computers);
   }
+
   function editRow(computer){
     setAdding(false);
     setEditingMode(true);
@@ -88,17 +79,24 @@ export function Computers({editRow}) {
                         discontinued:computer.discontinued
                         })
   }
+
   function editComputer(id, updatedComputer) {
     console.log('im inediting')
     setComputers(computers.map(computer => (computer.id === id ? updatedComputer : computer)))
     setEditingMode(false)
   }
 
+  function showName(){
+    getComputer(page).then(
+      response => {
+        setComputers(response.data ||[])
+      }
+    )
+  }
 
   return (
     <div>
     {
-
       !addingMode && !EditingMode ?
       <>
       <Row>
@@ -113,7 +111,7 @@ export function Computers({editRow}) {
       </Col>
       </Row>
       <br />
-      <Label> Nombre d'ordinateurs : {count} </Label>
+      <Label> Nombre d'ordinateurs : {computers.count} </Label>
       <br />
           
             <Table>
@@ -128,7 +126,7 @@ export function Computers({editRow}) {
                 </tr>
               </thead>
               <tbody>
-                {computers.map(computer =>
+                {computers.listComputer.map(computer =>
                   <Computer computer={computer}
                     key={computer.id}
                     edit={editRow}
@@ -148,15 +146,7 @@ export function Computers({editRow}) {
             <EditComputer updateComputer={editComputer}  currentComputer={currentComputer}/>
           </>
       }
-  function showName(){
-    getComputer(page).then(
-      response => {
-        setComputers(response.data ||[])
-      }
-    )
-  }
-
   
     </div>
   )
-}
+    }
