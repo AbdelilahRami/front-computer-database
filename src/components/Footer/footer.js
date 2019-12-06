@@ -28,7 +28,7 @@ export default function Footer({recupererLimite,maxPage,recupererActualPage}) {
         }else if(actPage===2){
             return(
             <>
-            <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(actPage)}>{actPage}</button>
+            <button style={{ color: 'white', backgroundColor: '#0069d9' }} onClick={() => showButton(actPage)}>{actPage}</button>
             <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage + 1)}>{actPage + 1}</button>
             <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage + 2)}>{actPage + 2}</button> 
             </>
@@ -36,7 +36,7 @@ export default function Footer({recupererLimite,maxPage,recupererActualPage}) {
         }else if(actPage===3){
            return( <>
             <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 1)}>{actPage - 1}</button>
-            <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(actPage)}>{actPage}</button>
+            <button style={{ color: 'white', backgroundColor: '#0069d9' }} onClick={() => showButton(actPage)}>{actPage}</button>
             <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage + 1)}>{actPage + 1}</button>
             <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage + 2)}>{actPage + 2}</button> 
             </>
@@ -45,14 +45,14 @@ export default function Footer({recupererLimite,maxPage,recupererActualPage}) {
             return( <>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 2)}>{actPage - 2}</button>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 1)}>{actPage - 1}</button>
-                <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(actPage)}>{actPage}</button>
+                <button style={{ color: 'white', backgroundColor: '#0069d9' }} onClick={() => showButton(actPage)}>{actPage}</button>
                 </>
                 )
         }else if(actPage===maxPage-2){
             return( <>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 2)}>{actPage - 2}</button>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 1)}>{actPage - 1}</button>
-                <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(actPage)}>{actPage}</button>
+                <button style={{ color: 'white', backgroundColor: '#0069d9' }} onClick={() => showButton(actPage)}>{actPage}</button>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage + 1)}>{actPage + 1}</button>
                 </>
                 )
@@ -60,7 +60,7 @@ export default function Footer({recupererLimite,maxPage,recupererActualPage}) {
             return( <>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 2)}>{actPage - 2}</button>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 1)}>{actPage - 1}</button>
-                <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(actPage)}>{actPage}</button>
+                <button style={{ color: 'white', backgroundColor: '#0069d9' }} onClick={() => showButton(actPage)}>{actPage}</button>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage + 1)}>{actPage + 1}</button>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage + 2)}>{actPage + 2}</button>
                 </>
@@ -107,7 +107,7 @@ export default function Footer({recupererLimite,maxPage,recupererActualPage}) {
                 <Container>
                     <NavbarBrand>2019-2020</NavbarBrand>
                     {stategauche ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleLeft} onClick={() => pageIteration(true)} /> : <></>}
-                    <button style={{ color: 'white', backgroundColor: actPage===1?'red':'gray' }} onClick={() => showButton(1)}>1</button>
+                    <button style={{ color: 'white', backgroundColor: actPage===1?'#0069d9':'gray' }} onClick={() => showButton(1)}>1</button>
                     {
                        actPage <=4?<></>:<button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => {}}>...</button>
                     }
@@ -117,7 +117,7 @@ export default function Footer({recupererLimite,maxPage,recupererActualPage}) {
                     {
                        actPage >=maxPage-3?<></>:<button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => {}}>...</button>
                     }
-                    <button style={{ color: 'white', backgroundColor: actPage===maxPage?'red':'gray' }} onClick={() => showButton(maxPage)}>{maxPage}</button>
+                    <button style={{ color: 'white', backgroundColor: actPage===maxPage?'#0069d9':'gray' }} onClick={() => showButton(maxPage)}>{maxPage}</button>
                     {statedroite ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleRight} onClick={() => pageIteration(false)} /> : <></>}
                     <Input style={{ width: '75px' }} type="select" onChange={(event) => recupererLimite(event.target.value)} >
                         <option>10</option>
