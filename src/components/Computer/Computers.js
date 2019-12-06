@@ -29,6 +29,7 @@ export function Computers(){
   getComputer(page).then(
     response => {
       setComputers(response.data ||[])
+      recupererLimite(10)
     }
     ),[])
 
