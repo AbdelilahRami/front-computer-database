@@ -2,8 +2,8 @@ import React,{useState} from 'react';
 import {Table} from 'reactstrap';
 import {Company} from './Company'
 import { useCompannies, useCompanies } from '../../containers/company/Companies.hook';
-import EditCompanyForm from './EditCompany';
-import AddCompany from './AddCompany';
+import EditCompanyForm from './Edit-company/EditCompany';
+import AddCompany from './Add-company/AddCompany';
 
 export function Companies({companis,editRow}) {
     const initialFormState = { id: null, name: ''}
@@ -30,7 +30,7 @@ export function Companies({companis,editRow}) {
     return (
         <div>
         {!editing && !adding ?<>
-                    <button onClick={()=>setAdding(!adding)}>Add Company</button>
+                    <button  className="btn btn-secondary  float-right" onClick={()=>setAdding(!adding)}>Add Company</button>
             <Table  responsive striped bordered hover width="50%" size="sm">
                 <thead>
                     <tr>
