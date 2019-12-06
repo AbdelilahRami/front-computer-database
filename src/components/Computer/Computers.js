@@ -23,7 +23,7 @@ export function Computers({editRow}) {
   //const [computers,setComputers] = useState(useComputers())
   const [page,setPage]=useState({search:'',limite:10,actPage:1})
   const [computers,setComputers]=useState({listComputer:[],nbComputer:0})
-  const [statenumbers,setnumbers]=useState()
+  const [maxPage,setmaxpage]=useState()
   let ids=[]
   
   function recupererActualPage(actual){
@@ -33,7 +33,7 @@ export function Computers({editRow}) {
   function recupererLimite(mylimit){
     setPage({ ...page, limite: mylimit,actPage:1 })
     var resulte = Math.round(computers.nbComputer / mylimit)
-    setnumbers(resulte)
+    setmaxpage(resulte)
   }
   useEffect( () => 
   getComputer(page).then(
@@ -136,7 +136,7 @@ export function Computers({editRow}) {
                 )}
               </tbody>
             </Table>
-          <Footer recupererLimite={recupererLimite} statenumbers={statenumbers} recupererActualPage={recupererActualPage}/>
+          <Footer recupererLimite={recupererLimite} maxPage={maxPage} recupererActualPage={recupererActualPage}/>
           </>
           : addingMode ?
           <>

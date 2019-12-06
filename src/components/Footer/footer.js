@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import StickyFooter from 'react-sticky-footer';
 
-export default function Footer({recupererLimite,statenumbers,recupererActualPage}) {
+export default function Footer({recupererLimite,maxPage,recupererActualPage}) {
     
     const [actPage, setActPage] = useState(1)
     const [stategauche, setgauche] = useState(true)
@@ -18,7 +18,7 @@ export default function Footer({recupererLimite,statenumbers,recupererActualPage
                     <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage + 2)}>{actPage + 2}</button>
                 </>
             )
-        } else if (actPage === statenumbers) {
+        } else if (actPage === maxPage) {
             return (
                 <>
                     <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 2)}>{actPage - 2}</button>
@@ -41,14 +41,14 @@ export default function Footer({recupererLimite,statenumbers,recupererActualPage
             <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage + 2)}>{actPage + 2}</button> 
             </>
             )
-        }else if(actPage===statenumbers-1){
+        }else if(actPage===maxPage-1){
             return( <>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 2)}>{actPage - 2}</button>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 1)}>{actPage - 1}</button>
                 <button style={{ color: 'white', backgroundColor: 'red' }} onClick={() => showButton(actPage)}>{actPage}</button>
                 </>
                 )
-        }else if(actPage===statenumbers-2){
+        }else if(actPage===maxPage-2){
             return( <>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 2)}>{actPage - 2}</button>
                 <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(actPage - 1)}>{actPage - 1}</button>
@@ -72,7 +72,7 @@ export default function Footer({recupererLimite,statenumbers,recupererActualPage
         if (page === 1) {
             setgauche(false);
             setdroite(true);
-        } else if (page === statenumbers) {
+        } else if (page === maxPage) {
             setgauche(true);
             setdroite(false);
         } else {
@@ -107,7 +107,7 @@ export default function Footer({recupererLimite,statenumbers,recupererActualPage
                 <Container>
                     <NavbarBrand>2019-2020</NavbarBrand>
                     {stategauche ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleLeft} onClick={() => pageIteration(true)} /> : <></>}
-                    <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(1)}>1</button>
+                    <button style={{ color: 'white', backgroundColor: actPage===1?'red':'gray' }} onClick={() => showButton(1)}>1</button>
                     {
                        actPage <=4?<></>:<button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => {}}>...</button>
                     }
@@ -115,9 +115,9 @@ export default function Footer({recupererLimite,statenumbers,recupererActualPage
                         iterateButton()
                     }
                     {
-                       actPage >=statenumbers-3?<></>:<button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => {}}>...</button>
+                       actPage >=maxPage-3?<></>:<button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => {}}>...</button>
                     }
-                    <button style={{ color: 'white', backgroundColor: 'gray' }} onClick={() => showButton(statenumbers)}>{statenumbers}</button>
+                    <button style={{ color: 'white', backgroundColor: actPage===maxPage?'red':'gray' }} onClick={() => showButton(maxPage)}>{maxPage}</button>
                     {statedroite ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleRight} onClick={() => pageIteration(false)} /> : <></>}
                     <Input style={{ width: '75px' }} type="select" onChange={(event) => recupererLimite(event.target.value)} >
                         <option>10</option>
