@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{useState} from 'react';
 
-export default function Computer({computer,checkFun}){
+export default function Computer({computer,checkFun,edit}){
+  const [stateComputer,setStateComputer] = useState(computer)
+
   
 const {id,name,introduced,discontinued,companyDTO}=computer
     return(
@@ -10,6 +12,7 @@ const {id,name,introduced,discontinued,companyDTO}=computer
             <td>{introduced}</td>
             <td>{discontinued}</td>
             <td>{companyDTO!=null?companyDTO.name:null}</td>
+            <td><button className="button muted-button" onClick={()=>edit(stateComputer)} >Edit</button></td>
           </tr>
     )
 }
