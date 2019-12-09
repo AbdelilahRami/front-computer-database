@@ -103,7 +103,7 @@ export function Computers({editRow}) {
       !addingMode && !EditingMode ?
       <>
       <Row>
-      <Col sm={2}>
+      <Col sm={4}>
       </Col>
       <Col sm={3}>
       <input  style={{ width: "3000px", align: "center" }} size="sm" type="text" placeholder="Veuillez saisir un computer name" onChange={event => setchampSearch(event.target.value)} />
@@ -111,15 +111,22 @@ export function Computers({editRow}) {
       <Col sm={2}>
       <Button size="lg" style={{ color: 'white', backgroundColor:'gray',borderColor:'gray' }} variant="secondary" type="submit" onClick={() => showName()}>Search</Button>
       </Col>
-      <Col sm={5}>
-      <Button size="lg" style={{ color: 'white', backgroundColor: '#0069d9', borderColor:'#0069d9'}} variant="secondary" type="submit" className="btn btn-secondary float-right" onClick={() => setAdding(!addingMode)}>Add Computer</Button>
+      <Col sm={-5}>
+      <Button size="lg" style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}} variant="secondary" type="submit" className="btn btn-secondary float-right" onClick={() => setAdding(!addingMode)}>Add Computer</Button>
       </Col>
       </Row>
-      <br />
-      <h2>
-         Nombre d'ordinateurs : 
-         <Badge variant="danger">522{computers.count} </Badge>
-      </h2>
+     
+     <br />
+     <Row>
+     <Col sm={2}>
+     </Col>
+     <Col sm={5}>
+          <h2>
+            Nombre d'ordinateurs : 
+            <Badge variant="danger">522{computers.count} </Badge>
+          </h2>
+    </Col>
+    </Row>
       <br />
           
             <Table striped bordered hover>

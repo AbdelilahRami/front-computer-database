@@ -7,8 +7,6 @@ import {
 import {Companies} from '../Company/Companies';
 import {Computers} from '../Computer/Computers';
 import {Login} from '../Login/Login';
-import {Footer} from '../Footer/footer';
-import { StickyContainer, Sticky } from 'react-sticky';
 import './myheader.css'
 export default function Header(){
     return(
@@ -23,6 +21,7 @@ export default function Header(){
                         </Nav>
                     </Navbar>
  </header>
+ <br/>
     <Switch>
       <Route path="/companies">
            <Companies/>
