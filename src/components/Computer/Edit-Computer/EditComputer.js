@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import useForm from './useform';
 import { Input, Button, FormGroup, Label, Form } from 'reactstrap';
-import { useCompanies } from '../../../containers/company/Companies.hook';
+import { getCompanies } from '../../../containers/company/Companies.hook';
 import validate from './validateForm';
 function EditComputer({updateComputer,currentComputer}){
     const [computer,setComputer] = useState(currentComputer);
@@ -33,7 +33,7 @@ function EditComputer({updateComputer,currentComputer}){
         updateComputer(computer.id,computer)
     
       }
-      const [companies, setCompanies] = useState(useCompanies());
+      const [companies, setCompanies] = useState(getCompanies());
     //useEffect
     // useEffect(    
     //     () => {

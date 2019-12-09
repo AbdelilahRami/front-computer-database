@@ -1,5 +1,5 @@
-
+import {getLogin} from '../../api/login.api'
 
 export function authentificatePage(login){
-    console.log(login);
+    return getLogin(login);
 }

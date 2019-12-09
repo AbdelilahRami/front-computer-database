@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import useForm from './useform';
 import validate from './validateForm';
 import './Add-computer.css'
-
 import { Input, Button, FormGroup, Label, Form } from 'reactstrap';
-import { useCompanies } from '../../../containers/company/Companies.hook';
+import { getCompanies } from '../../../containers/company/Companies.hook';
 
 function AddComputer({ addComputer }) {
   const { handleChange, handleSubmit,getCompanyDTO, computer, errors } = useForm(
@@ -16,7 +15,7 @@ function AddComputer({ addComputer }) {
     addComputer(computer)
 
   }
-  const [companies, setCompanies] = useState(useCompanies());
+  const [companies, setCompanies] = useState(getCompanies());
  
   return (
     <Form className="form"

@@ -34,5 +34,4 @@ export function AddCompany({addCompany,setAdding}){
         </Form>
     );
 }
-
 export default AddCompany;

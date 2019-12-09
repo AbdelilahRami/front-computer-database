@@ -1,52 +1,56 @@
-import { Col, Row} from 'reactstrap'
+import { Col, Row } from 'reactstrap'
 import AddComputer from './Add-computer/AddComputer';
-import { Input, Button, Label } from 'reactstrap';
+import { Label } from 'reactstrap';
+import  Button  from 'react-bootstrap/Button';
+import {Input} from 'react-bootstrap';
 import EditComputer from './Edit-Computer/EditComputer'
 import React , { useState, useEffect } from 'react';
 import { getComputer,deleteComputers} from '../../containers/computer/Computers.hook'
 import  Computer  from './Computer'
-import { Table } from 'reactstrap';
+import Table from 'react-bootstrap/Table'
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../Footer/footer';
-
+import Badge from 'react-bootstrap/Badge'
 export function Computers({editRow}) {
+
 
   const [statechampSearch, setchampSearch] = useState();
   //state for adding mode and editing mode
   const [addingMode, setAdding] = useState(false);
   const [EditingMode, setEditingMode] = useState(false);
   //initial inputs form : we use it in editing form
-  const initialEditingForm={id:null,name:'',introduced:'',discontinued:'',companyDTO:{id:null,name:''}};
+  const initialEditingForm = { id: null, name: '', introduced: '', discontinued: '', companyDTO: { id: null, name: '' } };
   //initial state for computer
-  const[currentComputer,setCurrentComputer]=useState(initialEditingForm);
+  const [currentComputer, setCurrentComputer] = useState(initialEditingForm);
   //const [computers,setComputers] = useState(useComputers())
   const [page,setPage]=useState({search:'',limite:10,actPage:1})
   const [computers,setComputers]=useState({listComputer:[],nbComputer:0})
-  const [statenumbers,setnumbers]=useState()
+  const [maxPage,setmaxpage]=useState()
   let ids=[]
   
   function recupererActualPage(actual){
     setPage({ ...page,actPage:actual })
     console.log(actual)
   }
-  function recupererLimite(mylimit){
-    setPage({ ...page, limite: mylimit,actPage:1 })
+  function recupererLimite(mylimit) {
+    setPage({ ...page, limite: mylimit, actPage: 1 })
     var resulte = Math.round(computers.nbComputer / mylimit)
-    setnumbers(resulte)
+    setmaxpage(resulte)
   }
-  useEffect( () => 
-  getComputer(page).then(
-    response => {
-      setComputers(response.data ||[])
-    }
-    ),[])
+  useEffect(() =>
+    getComputer(page).then(
+      response => {
+        setComputers(response.data || [])
+        recupererLimite(10)
+      }
+    ), [])
   function arrayRemove(arr, value) {
-    return arr.filter(function(ele){
-        return ele !== value;
+    return arr.filter(function (ele) {
+      return ele !== value;
     });
- }
-  
+  }
+
   function checkFun(id) {
     if (!ids.includes(id)) {
       ids.push(id);
@@ -55,29 +59,30 @@ export function Computers({editRow}) {
     }
   }
 
-  function deleteFunction(){
+  function deleteFunction() {
     deleteComputers(ids)
-    ids=[]
+    ids = []
     getComputer(page).then(response => {
-      setComputers(response.data ||[])
+      setComputers(response.data || [])
     })
   }
-  
-  function addComputer(computer){
+
+  function addComputer(computer) {
     setAdding(false);
-    computer.id=computers.length+1;
+    computer.id = computers.length + 1;
     computers.push(computer)
     console.log(computers);
   }
 
-  function editRow(computer){
+  function editRow(computer) {
     setAdding(false);
     setEditingMode(true);
-    setCurrentComputer({id:computer.id,
-                        name:computer.name,
-                        introduced:computer.introduced,
-                        discontinued:computer.discontinued
-                        })
+    setCurrentComputer({
+      id: computer.id,
+      name: computer.name,
+      introduced: computer.introduced,
+      discontinued: computer.discontinued
+    })
   }
 
   function editComputer(id, updatedComputer) {
@@ -86,10 +91,10 @@ export function Computers({editRow}) {
     setEditingMode(false)
   }
 
-  function showName(){
+  function showName() {
     getComputer(page).then(
       response => {
-        setComputers(response.data ||[])
+        setComputers(response.data || [])
       }
     )
   }
@@ -100,21 +105,33 @@ export function Computers({editRow}) {
       !addingMode && !EditingMode ?
       <>
       <Row>
-      <Col md={4}>
-      <Button className="btn btn-secondary float-right" onClick={() => setAdding(!addingMode)}>Add Computer</Button>
+      <Col sm={4}>
       </Col>
-      <Col md={2}>
-      <input style={{ width: "300px", align: "center" }} type="text" placeholder="Veuillez saisir un nom de computer " onChange={event => setchampSearch(event.target.value)} />
+      <Col sm={3}>
+      <input  style={{ width: "3000px", align: "center" }} size="sm" type="text" placeholder="Veuillez saisir un computer name" onChange={event => setchampSearch(event.target.value)} />
       </Col>
-      <Col md={4}>
-      <Button onClick={() => showName()}>Search</Button>
+      <Col sm={2}>
+      <Button size="lg" style={{ color: 'white', backgroundColor:'gray',borderColor:'gray' }} variant="secondary" type="submit" onClick={() => showName()}>Search</Button>
+      </Col>
+      <Col sm={-5}>
+      <Button size="lg" style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}} variant="secondary" type="submit" className="btn btn-secondary float-right" onClick={() => setAdding(!addingMode)}>Add Computer</Button>
       </Col>
       </Row>
-      <br />
-      <Label> Nombre d'ordinateurs : {computers.count} </Label>
-      <br />
-          
-            <Table>
+     
+     <br />
+     <Row>
+     <Col sm={2}>
+     </Col>
+     <Col sm={5}>
+          <h2>
+            Nombre d'ordinateurs : 
+            <Badge variant="danger">522{computers.count} </Badge>
+          </h2>
+    </Col>
+    </Row>          
+            <br />
+            <Table striped bordered hover>
+
               <thead>
                 <tr>
                   <th>#  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()} /> </th>
@@ -135,18 +152,18 @@ export function Computers({editRow}) {
                 )}
               </tbody>
             </Table>
-          <Footer recupererLimite={recupererLimite} statenumbers={statenumbers} recupererActualPage={recupererActualPage}/>
+          <Footer recupererLimite={recupererLimite} maxPage={maxPage} recupererActualPage={recupererActualPage}/>
           </>
           : addingMode ?
-          <>
-            <AddComputer addComputer={addComputer} />
-          </>
-          :
-          <>
-            <EditComputer updateComputer={editComputer}  currentComputer={currentComputer}/>
-          </>
+            <>
+              <AddComputer addComputer={addComputer} />
+            </>
+            :
+            <>
+              <EditComputer updateComputer={editComputer} currentComputer={currentComputer} />
+            </>
       }
-  
+
     </div>
   )
-    }
+}

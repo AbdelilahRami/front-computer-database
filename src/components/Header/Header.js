@@ -1,44 +1,35 @@
 import React from 'react';
-import { BrowserRouter as Router , Switch , Route , Redirect } from "react-router-dom";
+import { BrowserRouter as Router , Switch , Route , Link , Redirect } from "react-router-dom";
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from 'reactstrap';
-import {Companies} from '../Company/Companies';
+  Nav
+} from 'react-bootstrap';
 import {Computers} from '../Computer/Computers';
-import {Login} from '../Login/Login';
+import AddCompany from '../Company/Add-company/AddCompany'
+import Login from '../Login/Login';
+import AuthenticatedRoute from './AuthenticatedRoute'
+import './myheader.css'
 
 export default function Header(){
     return(
-
  <Router>
-    <div>
-        <Navbar color="light" light expand="md">
-            <NavbarBrand href="/computers">Home Menu</NavbarBrand>
-            <NavbarToggler  />
-            <Collapse navbar>
-            <Nav className="mr-auto" navbar>
-                <NavItem>
-                    <NavLink href="/companies" >Companies</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink href="/computers" >Computers</NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink href="/login">Login</NavLink>
-                </NavItem>
-            </Nav>
-            </Collapse>
-        </Navbar>
-    </div>
+  <header id="header">
+                    <Navbar bg="info" variant="dark" style={{position:'sticky'}}>
+                        <Navbar.Brand href="/computers">Home Menu</Navbar.Brand>
+                        <Nav className="mr-auto">
+                            <Nav.Link href="/companies"> Companies</Nav.Link>
+                            <Nav.Link href="/computers">Computers</Nav.Link>
+                            <Nav.Link href="/login">Login</Nav.Link>
+                        </Nav>
+                    </Navbar>
+ </header>
+ <br/>
     <Switch>
       <Route path="/companies">
-           <Companies/>
+           <AuthenticatedRoute/>
+      </Route>
+      <Route path="/computers/addCompanie">
+           <AddCompany/>
       </Route>
       <Route path="/computers">
            <Computers/>
@@ -49,5 +40,15 @@ export default function Header(){
       <Redirect exact from="/**" to="computers" />
     </Switch>
      </Router> 
+  
   );
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+      document.getElementById("header").style.fontSize = "30px";
+    } else {
+      document.getElementById("header").style.fontSize = "90px";
+    }
+    window.onscroll = function() {scrollFunction()};
+  }
 }
