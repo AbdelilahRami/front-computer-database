@@ -4,7 +4,7 @@ import { authentificatePage } from '../../containers/Login/Login.hook'
 import { Redirect } from 'react-router-dom'
 import AuthenticationService from './AuthenticationService'
 
-export function Login() {
+export default function Login() {
 
     const [indentifiant, setIndentifiant] = useState({ username: "", password: "" })
     const [login, setLogin] = useState(false)
@@ -15,7 +15,7 @@ export function Login() {
             AuthenticationService.registerSuccessfulLoginForJwt(indentifiant.username,responce.data)
             setLogin(true)
         })
-        // .catch(()=> setError(true))
+        .catch(()=> setError(true))
     }
 
     return (

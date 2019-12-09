@@ -10,7 +10,7 @@ export default function AuthenticatedRoute() {
         <>
             {AuthenticationService.isUserLoggedIn() ?
                 <Route path="/companies">
-                    <Companies />
+                    <Companies/>
                 </Route>
                 : <Redirect to="/login" />
             }
