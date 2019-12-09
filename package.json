@@ -16,6 +16,7 @@
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+    "react-sticky": "^6.0.3",
     "react-sticky-footer": "0.1.0-rc3",
     "reactstrap": "^8.1.1",
     "yarn": "^1.21.0"

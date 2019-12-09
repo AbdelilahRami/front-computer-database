@@ -8,21 +8,21 @@ import {Companies} from '../Company/Companies';
 import {Computers} from '../Computer/Computers';
 import {Login} from '../Login/Login';
 import {Footer} from '../Footer/footer';
-
+import { StickyContainer, Sticky } from 'react-sticky';
+import './myheader.css'
 export default function Header(){
     return(
-
  <Router>
-    <div>
-        <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="/computers">Home Menu</Navbar.Brand>
-            <Nav className="mr-auto">
-                <Nav.Link href="/companies"> Companies</Nav.Link>
-                <Nav.Link href="/computers">Computers</Nav.Link>
-                <Nav.Link href="/login">Login</Nav.Link>
-            </Nav>
-        </Navbar>
-    </div>
+  <header id="header">
+                    <Navbar bg="info" variant="dark" style={{position:'sticky'}}>
+                        <Navbar.Brand href="/computers">Home Menu</Navbar.Brand>
+                        <Nav className="mr-auto">
+                            <Nav.Link href="/companies"> Companies</Nav.Link>
+                            <Nav.Link href="/computers">Computers</Nav.Link>
+                            <Nav.Link href="/login">Login</Nav.Link>
+                        </Nav>
+                    </Navbar>
+ </header>
     <Switch>
       <Route path="/companies">
            <Companies/>
@@ -36,5 +36,15 @@ export default function Header(){
       <Redirect exact from="/**" to="computers" />
     </Switch>
      </Router> 
+  
   );
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+      document.getElementById("header").style.fontSize = "30px";
+    } else {
+      document.getElementById("header").style.fontSize = "90px";
+    }
+    window.onscroll = function() {scrollFunction()};
+  }
 }

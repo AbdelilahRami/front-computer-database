@@ -1,0 +1,13 @@
+#header {
+    background-color: #f1f1f1; /* Grey background */
+    color: black;
+    text-align: center; /* Centered text */
+    font-size: 20px; /* Big font size */
+    font-weight: bold;
+    font-family:Sans-serif;
+    position: sticky; /* Fixed position - sit on top of the page */
+    top: 0;
+    width: 100%; /* Full width */
+    transition: 0.2s; /* Add a transition effect (when scrolling - and font size is decreased) */
+    z-index: 9999;
+  }

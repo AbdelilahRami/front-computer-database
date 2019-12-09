@@ -109,7 +109,7 @@ export function Computers({editRow}) {
       <input  style={{ width: "3000px", align: "center" }} size="sm" type="text" placeholder="Veuillez saisir un computer name" onChange={event => setchampSearch(event.target.value)} />
       </Col>
       <Col sm={2}>
-      <Button size="lg" style={{ color: 'white', backgroundColor:'#17a2b8',borderColor:'#17a2b8' }} variant="secondary" type="submit" onClick={() => showName()}>Search</Button>
+      <Button size="lg" style={{ color: 'white', backgroundColor:'gray',borderColor:'gray' }} variant="secondary" type="submit" onClick={() => showName()}>Search</Button>
       </Col>
       <Col sm={5}>
       <Button size="lg" style={{ color: 'white', backgroundColor: '#0069d9', borderColor:'#0069d9'}} variant="secondary" type="submit" className="btn btn-secondary float-right" onClick={() => setAdding(!addingMode)}>Add Computer</Button>
