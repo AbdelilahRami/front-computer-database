@@ -145,8 +145,7 @@ export function Computers({editRow}) {
           <>
             <EditComputer updateComputer={editComputer}  currentComputer={currentComputer}/>
           </>
-      }
-  
+      }          
     </div>
   )
     }

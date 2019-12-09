@@ -9,9 +9,10 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
-import {Companies} from '../Company/Companies';
 import {Computers} from '../Computer/Computers';
+import AddCompany from '../Company/AddCompany'
 import {Login} from '../Login/Login';
+import AuthenticatedRoute from './AuthenticatedRoute'
 
 export default function Header(){
     return(
@@ -38,7 +39,10 @@ export default function Header(){
     </div>
     <Switch>
       <Route path="/companies">
-           <Companies/>
+           <AuthenticatedRoute/>
+      </Route>
+      <Route path="/computers/addCompanie">
+           <AddCompany/>
       </Route>
       <Route path="/computers">
            <Computers/>
