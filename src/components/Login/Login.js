@@ -6,16 +6,16 @@ import AuthenticationService from './AuthenticationService'
 
 export function Login() {
 
-    const [indetifiant, setIndetifiant] = useState({ username: "", password: "" })
+    const [indentifiant, setIndentifiant] = useState({ username: "", password: "" })
     const [login, setLogin] = useState(false)
     const [error, setError] = useState(false)
 
     function show() {
-        authentificatePage(indetifiant).then(responce => {
+        authentificatePage(indentifiant).then(responce => {
+            AuthenticationService.registerSuccessfulLoginForJwt(indentifiant.username,responce.data)
             setLogin(true)
-            AuthenticationService.registerSuccessfulLoginForJwt(indetifiant.username,responce)
         })
-        .catch(()=> setError(true))
+        // .catch(()=> setError(true))
     }
 
     return (
@@ -26,10 +26,10 @@ export function Login() {
 
                 <form>
                     <Label> Login :</Label>
-                    <Input type="text" name="username" onChange={event => setIndetifiant({ ...indetifiant, username: event.target.value })}></Input>
+                    <Input type="text" name="username" onChange={event => setIndentifiant({ ...indentifiant, username: event.target.value })}></Input>
 
                     <Label> Password :</Label>
-                    <Input type="password" name="password" onChange={event => setIndetifiant({ ...indetifiant, password: event.target.value })}></Input>
+                    <Input type="password" name="password" onChange={event => setIndentifiant({ ...indentifiant, password: event.target.value })}></Input>
 
                     <Button onClick={() => show()}>Submit</Button>
                 </form>}
