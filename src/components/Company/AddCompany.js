@@ -3,6 +3,7 @@ export function AddCompany({addCompany}){
 
     const initialFormState ={id:null, name:''}
     const [company,setCompany] = useState(initialFormState);
+    
     return(
         <form
                 onSubmit={event => {
