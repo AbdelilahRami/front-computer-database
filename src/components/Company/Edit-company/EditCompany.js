@@ -9,6 +9,11 @@ export default function EditCompany(props) {
     useEffect(() => {setCompany(props.currentCompany)},
         [props])
 
+        function submit(){
+            console.log(company)
+            console.log('editing company')
+        
+          }
     return (
         <Form className="form"
             onSubmit={event => {

@@ -35,6 +35,10 @@ export function Companies() {
       })
     })
   }
+  function editRow(company)  {
+    setEditing(true)
+    setCurrentCompany({id:company.id, name:company.name})
+  }
 
   return (
     <div>
@@ -53,6 +57,7 @@ export function Companies() {
                 <Company
                   company={company}
                   key={company.id}
+                  edit={editRow}
                 />
               )
             })}
@@ -62,7 +67,7 @@ export function Companies() {
       </>
         : adding ?
           <>
-            <AddCompany addCompany={addCompany} />
+            <AddCompany setAdding={setAdding} addCompany={addCompany} />
           </>
           :
           <>
