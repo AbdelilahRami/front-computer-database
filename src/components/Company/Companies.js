@@ -55,12 +55,11 @@ export function Companies({companis,editRow}) {
              </>
              : adding ?
                         <>
-                        <h2>Add Company</h2>
-                        <AddCompany addCompany={addCompany} />
+                        <AddCompany adding={adding} setAdding={setAdding} addCompany={addCompany} />
                         </>
                      :
              <>
-                    <h2>Edit Company</h2>
+                    
                     <EditCompanyForm
                     editing ={editing}
                     setEditing={setEditing}
