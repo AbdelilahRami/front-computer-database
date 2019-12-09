@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import StickyFooter from 'react-sticky-footer';
 
-export default function Footer({ recupererLimite, maxPage, recupererActualPage, limite, pageAct }) {
+export default function Footer({ recupererLimite, maxPage, recupererActualPage, limite }) {
 
-    const [actPage, setActPage] = useState(pageAct)
+    const [actPage, setActPage] = useState(1)
     const [stategauche, setgauche] = useState(true)
     const [statedroite, setdroite] = useState(false)
 
@@ -68,6 +68,11 @@ export default function Footer({ recupererLimite, maxPage, recupererActualPage, 
         }
     }
 
+    function sendlimite(limite){
+        setActPage(1)
+        recupererLimite(limite)
+    }
+
     function showButton(page) {
         if (page === 1) {
             setgauche(false);
@@ -121,7 +126,7 @@ export default function Footer({ recupererLimite, maxPage, recupererActualPage, 
 
                     {statedroite ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleRight} onClick={() => pageIteration(false)} /> : <></>}
 
-                    <Input style={{ width: '75px' }} value={limite} type="select" onChange={(event) => recupererLimite(event.target.value)} >
+                    <Input style={{ width: '75px' }} value={limite} type="select" onChange={(event) => sendlimite(event.target.value)} >
                         <option>10</option>
                         <option>30</option>
                         <option>60</option>

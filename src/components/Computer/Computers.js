@@ -42,25 +42,15 @@ export function Computers({editRow}) {
   }
   
   useEffect(() =>{
-    console.log("test2")
     getComputer(page).then(
       response => {
         setComputers(response.data || [])
+        setmaxpage(Math.round(response.data.nbComputer / page.limite))
       }
     )
   }
   , [page])
 
-  useEffect(() =>{
-    console.log("test")
-    getComputer(page).then(
-      response => {
-        setComputers(response.data || [])
-      }
-    )
-  }
-  , [])
-console.log(computers)
   function arrayRemove(arr, value) {
     return arr.filter(function (ele) {
       return ele !== value;
