@@ -3,6 +3,7 @@ import { Input, Button } from 'reactstrap';
 import { Container, Col, Row, Form, FormGroup, Label, } from 'reactstrap';
 import useForm from './useForm';
 import validate from './validate-company'
+
 export function AddCompany({addCompany,setAdding}){
     const { handleChange, handleSubmit,company, errors } = useForm(
         submit,
