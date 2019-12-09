@@ -9,6 +9,9 @@ import AddCompany from '../Company/Add-company/AddCompany'
 import Login from '../Login/Login';
 import AuthenticatedRoute from './AuthenticatedRoute'
 import './myheader.css'
+import {Companies} from '../Company/Companies';
+
+
 
 export default function Header() {
   return (
@@ -40,7 +43,6 @@ export default function Header() {
         <Redirect exact from="/**" to="computers" />
       </Switch>
     </Router>
-
   );
 
   function scrollFunction() {
