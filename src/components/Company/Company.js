@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+
 export function Company({company,edit}) {
     const {id,name} = company
     const [stateCompani,setStateCompani] = useState(company)

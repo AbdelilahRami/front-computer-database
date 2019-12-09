@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table } from 'reactstrap';
 import { Company } from './Company'
 import { getCompanies, createCompany, updateCompany } from '../../containers/company/Companies.hook';
-import EditCompanyForm from './EditCompany';
+import EditCompany from './Edit-company/EditCompany';
 import AddCompany from './AddCompany';
 
 export function Companies() {
@@ -25,8 +25,6 @@ export function Companies() {
         setCompanies(response.data)
       })
     })
-    // companies.push(company);
-    // setCompanies(companies);
   }
 
   function editCompany(id, updatedCompany) {
@@ -36,7 +34,6 @@ export function Companies() {
         setCompanies(response.data)
       })
     })
-    // setCompanies(companies.map(company => (company.id === id ? updatedCompany : company)))
   }
 
   return (
@@ -71,7 +68,7 @@ export function Companies() {
           :
           <>
             <h2>Edit Company</h2>
-            <EditCompanyForm
+            <EditCompany
               editing={editing}
               setEditing={setEditing}
               currentCompany={currentCompany}
