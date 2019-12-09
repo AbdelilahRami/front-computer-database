@@ -1,7 +1,8 @@
 import React,{useState} from 'react';
 import { Input, Button } from 'reactstrap';
 import { Container, Col, Row, Form, FormGroup, Label, } from 'reactstrap';
-export function AddCompany({addCompany}){
+
+function AddCompany({addCompany}){
 
     const initialFormState ={id:null, name:''}
     const [company,setCompany] = useState(initialFormState);
@@ -20,5 +21,4 @@ export function AddCompany({addCompany}){
         </Form>
     );
 }
-
 export default AddCompany;
