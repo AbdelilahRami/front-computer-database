@@ -1,8 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router , Switch , Route , Redirect } from "react-router-dom";
-import {Navbar,Nav} from 'react-bootstrap';
+import { BrowserRouter as Router , Switch , Route , Link , Redirect } from "react-router-dom";
+import {
+  Navbar,
+  Nav
+} from 'react-bootstrap';
 import {Computers} from '../Computer/Computers';
-import AddCompany from '../Company/AddCompany'
+import AddCompany from '../Company/Add-company/AddCompany'
 import Login from '../Login/Login';
 import AuthenticatedRoute from './AuthenticatedRoute'
 

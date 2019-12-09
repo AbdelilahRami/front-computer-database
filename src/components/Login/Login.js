@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Input, Button, Label, Container, Col, Row, Form } from 'reactstrap';
+import { Container, Col, Row, Form, Label,Input, Button } from 'reactstrap';
+import './Login.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { authentificatePage } from '../../containers/Login/Login.hook'
 import { Redirect } from 'react-router-dom'
 import AuthenticationService from './AuthenticationService'

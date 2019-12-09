@@ -22,5 +22,4 @@ export function AddCompany({addCompany}){
         </Form>
     );
 }
-
 export default AddCompany;
