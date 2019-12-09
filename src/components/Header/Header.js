@@ -1,13 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router , Switch , Route , Link , Redirect } from "react-router-dom";
-import {
-  Navbar,
-  Nav
-} from 'react-bootstrap';
-import {Companies} from '../Company/Companies';
+import { BrowserRouter as Router , Switch , Route , Redirect } from "react-router-dom";
+import {Navbar,Nav} from 'react-bootstrap';
 import {Computers} from '../Computer/Computers';
-import {Login} from '../Login/Login';
-import {Footer} from '../Footer/footer';
+import AddCompany from '../Company/AddCompany'
+import Login from '../Login/Login';
+import AuthenticatedRoute from './AuthenticatedRoute'
 
 export default function Header(){
     return(
@@ -25,7 +22,10 @@ export default function Header(){
     </div>
     <Switch>
       <Route path="/companies">
-           <Companies/>
+           <AuthenticatedRoute/>
+      </Route>
+      <Route path="/computers/addCompanie">
+           <AddCompany/>
       </Route>
       <Route path="/computers">
            <Computers/>
