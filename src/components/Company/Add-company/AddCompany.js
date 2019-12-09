@@ -23,7 +23,7 @@ export function AddCompany({addCompany,setAdding}){
             <Label>Name</Label>
             <Input type="text" name="name" value={company.name} onChange={event=>setCompany({...company,name:event.target.value})} />
             <div>{error ? "error" : ""}</div>
-            <Button>Add Company</Button>&nbsp;&nbsp;&nbsp;
+            <Button disabled={error}>Add Company</Button>&nbsp;&nbsp;&nbsp;
             <Button onClick={() => setAdding(false)} className="button muted-button">Cancel</Button>
         </Form>
     );
