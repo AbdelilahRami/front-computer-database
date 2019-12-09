@@ -1,21 +1,24 @@
 import React,{useState} from 'react';
+import { Input, Button } from 'reactstrap';
+import { Container, Col, Row, Form, FormGroup, Label, } from 'reactstrap';
 export function AddCompany({addCompany}){
 
     const initialFormState ={id:null, name:''}
     const [company,setCompany] = useState(initialFormState);
     
     return(
-        <form
+ 
+        <Form className="form"
                 onSubmit={event => {
                     event.preventDefault()
                     if (!company.name) return
                     addCompany(company)
                 }}
         >
-            <label>Name</label>
-            <input type="text" name="name" value={company.name} onChange={event=>setCompany({...company,name:event.target.value})} />       
-            <button>Add Company</button>
-        </form>
+            <Label>Name</Label>
+            <Input type="text" name="name" value={company.name} onChange={event=>setCompany({...company,name:event.target.value})} />       
+            <Button>Add Company</Button>
+        </Form>
     );
 }
 
