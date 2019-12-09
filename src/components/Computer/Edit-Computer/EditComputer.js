@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import useForm from './useform';
-import { Input, Button, FormGroup, Label, Form } from 'reactstrap';
+import { Input,  FormGroup, Label, Form } from 'reactstrap';
 import { getCompanies } from '../../../containers/company/Companies.hook';
 import validate from './validateForm';
 function EditComputer({updateComputer,currentComputer}){
