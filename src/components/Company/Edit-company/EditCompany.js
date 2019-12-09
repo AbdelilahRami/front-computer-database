@@ -17,6 +17,7 @@ export default function EditCompany(props) {
                 props.updateCompany(company.id, company)
             }}
         >
+        <h2>Edit Company</h2>
             <Label>Name</Label>
             <Input type="text" name="name" value={company.name} onChange={event => setCompany({ ...company, name: event.target.value })} />
             <Button>Update Company</Button>
