@@ -4,10 +4,12 @@ import {
   Navbar,
   Nav
 } from 'react-bootstrap';
-import {Companies} from '../Company/Companies';
 import {Computers} from '../Computer/Computers';
-import {Login} from '../Login/Login';
+import AddCompany from '../Company/Add-company/AddCompany'
+import Login from '../Login/Login';
+import AuthenticatedRoute from './AuthenticatedRoute'
 import './myheader.css'
+
 export default function Header(){
     return(
  <Router>
@@ -24,7 +26,10 @@ export default function Header(){
  <br/>
     <Switch>
       <Route path="/companies">
-           <Companies/>
+           <AuthenticatedRoute/>
+      </Route>
+      <Route path="/computers/addCompanie">
+           <AddCompany/>
       </Route>
       <Route path="/computers">
            <Computers/>
