@@ -161,8 +161,7 @@ export function Computers({editRow}) {
           <Footer recupererLimite={recupererLimite} 
           maxPage={maxPage} 
           recupererActualPage={recupererActualPage} 
-          limite={page.limite}
-          pageAct={page.actPage}/>
+          limite={page.limite}/>
           </>
           : addingMode ?
             <>
