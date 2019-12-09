@@ -38,4 +38,5 @@ function useForm(callback,validate){
         errors
       };
 };
+
 export default useForm;

@@ -10,7 +10,7 @@ import Login from '../Login/Login';
 import AuthenticatedRoute from './AuthenticatedRoute'
 import './myheader.css'
 import {Companies} from '../Company/Companies';
-
+import AddComputer from '../Computer/Add-computer/AddComputer';
 
 
 export default function Header() {
@@ -31,8 +31,8 @@ export default function Header() {
         <Route path="/companies">
           <AuthenticatedRoute />
         </Route>
-        <Route path="/computers/addCompanie">
-          <AddCompany />
+        <Route path="/computers/addComputer">
+          <AddComputer />
         </Route>
         <Route path="/computers">
           <Computers />

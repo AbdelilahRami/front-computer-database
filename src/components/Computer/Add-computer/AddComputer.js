@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useForm from './useform';
 import validate from './validateForm';
 import './Add-computer.css'
-import { Input, Button, FormGroup, Label, Form } from 'reactstrap';
+import { Input, FormGroup, Label, Form } from 'reactstrap';
 import { getCompanies } from '../../../containers/company/Companies.hook';
 
-function AddComputer({ addComputer }) {
+function AddComputer() {
+
+  const [companies, setCompanies] = useState([]);
   const { handleChange, handleSubmit,getCompanyDTO, computer, errors } = useForm(
     submit,
     validate
   );
+
   function submit(){
     console.log(computer)
     addComputer(computer)
-
   }
-  const [companies, setCompanies] = useState(getCompanies());
+
+  function addComputer(computer) {
+    console.log(computer)
+  }
+
+  
  
+  useEffect(() =>{
+    getCompanies().then(
+      response => {
+        setCompanies(response.data || [])
+      }
+    )
+  }
+  , [])
+
   return (
     <Form className="form"
       onSubmit={handleSubmit}
@@ -62,7 +78,7 @@ function AddComputer({ addComputer }) {
       <FormGroup>
         <Label for="exampleSelect">Company</Label>
         <Input type="select" onChange={getCompanyDTO} name="select" id="exampleSelect">
-          <option key="0" value="" selected></option>
+          <option key="0" value=""></option>
           {companies.map(company => <option value={company.name} key={company.id} >{company.name}</option>)}
         </Input>
       </FormGroup>

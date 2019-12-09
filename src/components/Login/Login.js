@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Col, Row, Label, Input } from 'reactstrap';
+import { Container, Col, Row } from 'reactstrap';
 import './Login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { authentificatePage } from '../../containers/Login/Login.hook'
@@ -7,8 +7,8 @@ import { Redirect } from 'react-router-dom'
 import AuthenticationService from './AuthenticationService'
 import './Login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FormGroup, Form, FormLabel, FormControl, Button } from 'react-bootstrap';
-import Badge from 'react-bootstrap/Badge';
+import { FormGroup, Form, Button } from 'react-bootstrap';
+
 export default function Login() {
 
     const [indentifiant, setIndentifiant] = useState({ username: "", password: "" })
@@ -33,7 +33,7 @@ export default function Login() {
                     <Form className="form">
                         <Row>
                             <Col sm="4"></Col>
-                            <Col sm="5"><h1 style={{color:'#17a2b8',display:'block'}}>Sign In :</h1></Col></Row>
+                            <Col sm="5"><h1 style={{ color: '#17a2b8', display: 'block' }}>Sign In :</h1></Col></Row>
                         <Form.Group>
                             <Form.Label> Username :</Form.Label>
                             <Form.Control type="text" placeholder="Enter a valid username" onChange={event => setIndentifiant({ ...indentifiant, username: event.target.value })} />
@@ -42,7 +42,7 @@ export default function Login() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" onChange={event => setIndentifiant({ ...indentifiant, password: event.target.value })} />
                         </FormGroup>
-                        <Button style={{backgroundColor:'#17a2b8',borderColor:'#17a2b8'}}  type="submit" onClick={() => show()}>
+                        <Button style={{ backgroundColor: '#17a2b8', borderColor: '#17a2b8' }} type="submit" onClick={() => show()}>
                             Submit
                                 </Button>
                     </Form>
