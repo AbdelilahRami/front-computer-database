@@ -17,8 +17,8 @@ export default function Header(){
                     <Navbar bg="info" variant="dark" style={{position:'sticky'}}>
                         <Navbar.Brand href="/computers">Home Menu</Navbar.Brand>
                         <Nav className="mr-auto">
-                            <Nav.Link href="/companies"> Companies</Nav.Link>
                             <Nav.Link href="/computers">Computers</Nav.Link>
+                            <Nav.Link href="/companies"> Companies</Nav.Link>
                             <Nav.Link href="/login">Login</Nav.Link>
                         </Nav>
                     </Navbar>
