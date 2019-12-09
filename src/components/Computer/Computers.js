@@ -39,6 +39,7 @@ export function Computers({editRow}) {
   getComputer(page).then(
     response => {
       setComputers(response.data ||[])
+      recupererLimite(10)
     }
     ),[])
   function arrayRemove(arr, value) {
