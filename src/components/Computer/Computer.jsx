@@ -12,7 +12,7 @@ const {id,name,introduced,discontinued,companyDTO}=computer
             <td>{introduced}</td>
             <td>{discontinued}</td>
             <td>{companyDTO!=null?companyDTO.name:null}</td>
-            <td><button className="button muted-button" onClick={()=>edit(stateComputer)} >Edit</button></td>
+            <td><button style={{ color: 'dark', backgroundColor:'#ffc107',borderColor:'#ffc107' }} className="button muted-button" onClick={()=>edit(stateComputer) } >Edit</button></td>
           </tr>
     )
 }
