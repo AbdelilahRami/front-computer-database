@@ -1,41 +1,37 @@
 
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
-function useForm(callback,validate){
-    const initialsForm = { id: null, name: '', introduced: '', discontinued: '', companyDTO: { id: null, name: '' } };
-    const [computer, setComputer] = useState(initialsForm);
-    const [companyDTO, setCompanyDTO] = useState({ id: null, name: '' });
-    const [errors, setErrors] = useState({});
-    const [isSubmitting, setIsSubmitting] = useState(false);
+function useForm(callback, validate, currentComputer) {
 
-    function getCompanyDTO(event) {
-        const companyName = event.target.value;
-        const idCompany = event.target.options.selectedIndex;
-        const companyDTOX = { id: idCompany, name: companyName };
-        setComputer({ ...computer, companyDTO: companyDTOX })
-      }
+  const [computer, setComputer] = useState( { id: null, name: '', introduced: null, discontinued: null, companyDTO: { id: null, name: '' } });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    function handleChange(event) {
-        const { name, value } = event.target
-        setComputer({ ...computer, [name]: value })
-      }
-      function handleSubmit(event) {
-        let formIsValid = false;
-        event.preventDefault()
-        setErrors(validate(computer));
-        setIsSubmitting(true);
-      }
-      useEffect(() => {
-        if (Object.keys(errors).length === 0 && isSubmitting) {
-          callback();
-        }
-      }, [errors]);
-      return {
-        handleChange,
-        handleSubmit,
-        getCompanyDTO,
-        computer,
-        errors
-      };
+  function handleSubmit(event) {
+    event.preventDefault()
+    setErrors(validate(computer));
+    setIsSubmitting(true);
+  }
+
+  useEffect(    
+    () => {
+        setComputer(currentComputer)
+    },
+    [currentComputer]
+)
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && isSubmitting) {
+      callback();
+    }
+  }, [errors]);
+
+  return {
+    handleSubmit,
+    computer,
+    errors
+  };
+
 };
+
 export default useForm;

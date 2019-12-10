@@ -1,17 +1,19 @@
 import { Col, Row } from 'reactstrap'
 import AddComputer from './Add-computer/AddComputer';
 import  Button  from 'react-bootstrap/Button';
+import {Input, Container} from 'react-bootstrap';
 import EditComputer from './Edit-Computer/EditComputer'
-import React , { useState, useEffect } from 'react';
-import { getComputer,deleteComputers} from '../../containers/computer/Computers.hook'
-import  Computer  from './Computer'
+import React, { useState, useEffect } from 'react';
+import { getComputer, deleteComputers } from '../../containers/computer/Computers.hook'
+import Computer from './Computer'
 import Table from 'react-bootstrap/Table'
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../Footer/footer';
 import Badge from 'react-bootstrap/Badge'
+import { Redirect } from 'react-router-dom'
 
-export function Computers({editRow}) {
+export function Computers({ editRow }) {
 
   //state for adding mode and editing mode
   const [addingMode, setAdding] = useState(false);
@@ -21,13 +23,13 @@ export function Computers({editRow}) {
   //initial state for computer
   const [currentComputer, setCurrentComputer] = useState(initialEditingForm);
 
-  const [page,setPage]=useState({search:'',limite:10,actPage:1})
-  const [computers,setComputers]=useState({listComputer:[],nbComputer:0})
-  const [maxPage,setmaxpage]=useState(1)
-  let ids=[]
-  
-  function recupererActualPage(actual){
-    setPage({ ...page,actPage:actual })
+  const [page, setPage] = useState({ search: '', limite: 10, actPage: 1 })
+  const [computers, setComputers] = useState({ listComputer: [], nbComputer: 0 })
+  const [maxPage, setmaxpage] = useState(1)
+  let ids = []
+
+  function recupererActualPage(actual) {
+    setPage({ ...page, actPage: actual })
     getComputer(page).then(
       response => {
         setComputers(response.data || [])
@@ -36,12 +38,12 @@ export function Computers({editRow}) {
   }
 
   function recupererLimite(mylimit) {
-    setPage({ ...page,actPage:1, limite: mylimit })
+    setPage({ ...page, actPage: 1, limite: mylimit })
     var resulte = Math.round(computers.nbComputer / mylimit)
     setmaxpage(resulte)
   }
-  
-  useEffect(() =>{
+
+  useEffect(() => {
     getComputer(page).then(
       response => {
         setComputers(response.data || [])
@@ -49,7 +51,7 @@ export function Computers({editRow}) {
       }
     )
   }
-  , [page])
+    , [page])
 
   function arrayRemove(arr, value) {
     return arr.filter(function (ele) {
@@ -73,22 +75,9 @@ export function Computers({editRow}) {
     })
   }
 
-  function addComputer(computer) {
-    setAdding(false);
-    computer.id = computers.length + 1;
-    computers.push(computer)
-    console.log(computers);
-  }
-
   function editRow(computer) {
-    setAdding(false);
     setEditingMode(true);
-    setCurrentComputer({
-      id: computer.id,
-      name: computer.name,
-      introduced: computer.introduced,
-      discontinued: computer.discontinued
-    })
+    setCurrentComputer(computer)
   }
 
   function editComputer(id, updatedComputer) {
@@ -107,8 +96,13 @@ export function Computers({editRow}) {
 
   return (
     <div>
-    {
-      !addingMode && !EditingMode ?
+   {addingMode ? <Redirect to='/computers/addComputer' /> : <></>}
+      {
+        EditingMode ?
+          <>
+            <EditComputer updateComputer={editComputer} currentComputer={currentComputer} />
+          </>
+          :
       <>
       <Row>
       <Col sm={3}>
@@ -134,10 +128,9 @@ export function Computers({editRow}) {
     </Row>          
             <br />
             <Table striped bordered hover style={{marginLeft:'auto',marginRight:'auto',width:'90%'}}>
-
               <thead>
                 <tr>
-                  <th>#  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()} /> </th>
+                  <th>  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()} /> </th>
                   <th>Name</th>
                   <th>Introduced</th>
                   <th>Discontinued</th>
@@ -155,19 +148,14 @@ export function Computers({editRow}) {
                 )}
               </tbody>
             </Table>
-          <Footer recupererLimite={recupererLimite} 
-          maxPage={maxPage} 
-          recupererActualPage={recupererActualPage} 
-          limite={page.limite}/>
+
+            </Container>
+
+            <Footer recupererLimite={recupererLimite}
+              maxPage={maxPage}
+              recupererActualPage={recupererActualPage}
+              limite={page.limite} />
           </>
-          : addingMode ?
-            <>
-              <AddComputer addComputer={addComputer} />
-            </>
-            :
-            <>
-              <EditComputer updateComputer={editComputer} currentComputer={currentComputer} />
-            </>
       }
 
     </div>

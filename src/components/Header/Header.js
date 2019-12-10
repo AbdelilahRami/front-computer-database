@@ -11,6 +11,7 @@ import AuthenticatedRoute from './AuthenticatedRoute'
 import './myheader.css'
 import {Companies} from '../Company/Companies';
 import AuthenticationService from '../Login/AuthenticationService'
+import AddComputer from '../Computer/Add-computer/AddComputer';
 
 export default function Header() {
   return (
@@ -38,8 +39,8 @@ export default function Header() {
         <Route path="/companies">
           <Companies />
         </Route>
-        <Route path="/computers/addCompanie">
-          <AddCompany />
+        <Route path="/computers/addComputer">
+          <AddComputer />
         </Route>
         <Route path="/computers">
           <Computers />
@@ -50,7 +51,6 @@ export default function Header() {
         <Redirect exact from="/**" to="computers" />
       </Switch>
     </Router>
-
   );
 
   function scrollFunction() {
