@@ -19,3 +19,9 @@ export async function deleteComputer(tableau){
     .then(response=>{return response})
     .catch(error=>console.log(error))
 }
+
+export async function createComputer(computer){
+    return await Axios.post(adresse,computer)
+    .then(response=>{return response})
+    .catch(error=>console.log(error))
+}
