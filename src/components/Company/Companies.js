@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import  Table  from 'react-bootstrap/Table';
 import { Company } from './Company'
-import { getCompanies, createCompany, updateCompany } from '../../containers/company/Companies.hook';
+import { getCompanies, createCompany, updateCompany,deleteCompani } from '../../containers/company/Companies.hook';
 import EditCompany from './Edit-company/EditCompany';
 import { Col, Row } from 'reactstrap'
 import AddCompany from './Add-company/AddCompany';
@@ -26,6 +26,14 @@ export function Companies() {
         setCompanies(response.data)
       })
     })
+  }
+  function deleteCompany(company){
+    deleteCompani(company).then(()=>{
+      getCompanies().then(response=>{
+        setCompanies(response.data)
+      }) 
+    })
+
   }
 
   function editCompany(id, updatedCompany) {
@@ -65,6 +73,7 @@ export function Companies() {
                   company={company}
                   key={company.id}
                   edit={editRow}
+                  deleteCompany={deleteCompany}
                 />
               )
             })}

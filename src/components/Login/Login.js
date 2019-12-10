@@ -9,7 +9,7 @@ import './Login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FormGroup, Form, Button } from 'react-bootstrap';
 
-export default function Login() {
+export default function Login({log}) {
 
     const [indentifiant, setIndentifiant] = useState({ username: "", password: "" })
     const [login, setLogin] = useState(false)
@@ -17,6 +17,7 @@ export default function Login() {
 
     function show() {
         authentificatePage(indentifiant).then(responce => {
+            log(true)
             AuthenticationService.registerSuccessfulLoginForJwt(indentifiant.username, responce.data)
             setLogin(true)
         })

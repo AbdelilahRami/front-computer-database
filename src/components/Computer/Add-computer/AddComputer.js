@@ -18,6 +18,11 @@ export default function AddComputer() {
     validate,computer
   );
 
+  function cancelForm(){
+
+    setAjout(true)
+  }
+
   function getCompanyDTO(event) {
     const companyName = event.target.value;
     const idCompany = event.target.options.selectedIndex;
@@ -46,7 +51,7 @@ export default function AddComputer() {
 
   return (
     <>
-    {ajout ? <Redirect to='/computers' />
+    {ajout  ?  <Redirect to='/computers' />
       
     :
     <Form className="form"
@@ -101,8 +106,9 @@ export default function AddComputer() {
         </Input>
       </FormGroup>
       <div style={{textAlign:'center'}}>
-            <button style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}}>Add Computer</button>
-      </div>
+            <button style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}}>Add Computer</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" onClick={cancelForm} className="button muted-button">Cancel</button>  
+
       <p></p>
     </Form>}
     </>

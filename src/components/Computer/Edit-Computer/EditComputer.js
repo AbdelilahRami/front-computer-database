@@ -4,7 +4,7 @@ import { Input, FormGroup, Label, Form } from 'reactstrap';
 import { getCompanies } from '../../../containers/company/Companies.hook';
 import validate from './validateForm';
 
-function EditComputer({ updateComputer, currentComputer }) {
+function EditComputer({ updateComputer, currentComputer,setEditing }) {
 
   const [companies, setCompanies] = useState([]);
   const [computer, setComputer] = useState(currentComputer);
@@ -90,8 +90,10 @@ console.log(computer)
         </Input>
       </FormGroup>
       <div style={{textAlign:'center'}}>
-          <button style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}}>Edit Computer</button>
+          <button style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}}>Edit Computer</button>&nbsp;&nbsp;&nbsp;
+    <button onClick={() => setEditing(false)} className="button muted-button">Cancel</button>
           </div>
+
       <p></p>
     </Form>
   )
