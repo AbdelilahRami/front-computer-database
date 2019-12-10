@@ -5,11 +5,10 @@ import useForm from './useForm';
 import validate from './validate-company'
 
 export function AddCompany({addCompany,setAdding}){
-    const { handleChange, handleSubmit,company, errors } = useForm(
+    const { handleChange, handleSubmit,company, errors} = useForm(
         submit,
         validate
       );
-
     const initialFormState ={id:null, name:''}
 
     //const [company,setCompany] = useState(initialFormState);
@@ -18,9 +17,7 @@ export function AddCompany({addCompany,setAdding}){
     function submit(){
         console.log(company)
         addCompany(company)
-    
       }
-   
     return(
 
         <Form className="form"

@@ -1,5 +1,7 @@
 import { Col, Row } from 'reactstrap'
-import Button from 'react-bootstrap/Button';
+import AddComputer from './Add-computer/AddComputer';
+import  Button  from 'react-bootstrap/Button';
+import {Input, Container} from 'react-bootstrap';
 import EditComputer from './Edit-Computer/EditComputer'
 import React, { useState, useEffect } from 'react';
 import { getComputer, deleteComputers } from '../../containers/computer/Computers.hook'
@@ -129,11 +131,12 @@ export function Computers({ editRow }) {
               </Col>
             </Row>
             <br />
+            <Container className="themed-container" fluid="lg">
             <Table striped bordered hover>
 
               <thead>
                 <tr>
-                  <th>#  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()} /> </th>
+                  <th>  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()} /> </th>
                   <th>Name</th>
                   <th>Introduced</th>
                   <th>Discontinued</th>
@@ -151,6 +154,9 @@ export function Computers({ editRow }) {
                 )}
               </tbody>
             </Table>
+
+            </Container>
+
             <Footer recupererLimite={recupererLimite}
               maxPage={maxPage}
               recupererActualPage={recupererActualPage}
