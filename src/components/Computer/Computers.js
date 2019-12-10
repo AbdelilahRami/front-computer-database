@@ -91,7 +91,7 @@ export function Computers({ editRow }) {
       {
         EditingMode ?
           <>
-            <EditComputer updateComputer={editComputer} currentComputer={currentComputer} />
+            <EditComputer setEditing={setEditingMode} updateComputer={editComputer} currentComputer={currentComputer} />
           </>
           :
       <>

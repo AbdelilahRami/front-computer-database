@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-export function Company({company,edit}) {
+export function Company({company,edit,deleteCompany}) {
     const {id,name} = company
     const [stateCompani,setStateCompani] = useState(company)
 
@@ -11,10 +11,10 @@ export function Company({company,edit}) {
                 <td>{name}</td>
                 <td>
               <button style={{ color: 'dark', backgroundColor: '#ffc107', borderColor: '#ffc107' }} className="button muted-button" onClick={()=>
-                  edit(stateCompani)} >Edit</button>
+                  edit(stateCompani)} >Edit</button>&nbsp;&nbsp;&nbsp;
 
                 <button className="button muted-button" onClick={()=>
-                    edit(stateCompani)} >Delete</button>
+                    deleteCompany(stateCompani)} >Delete</button>
             </td>
             </tr>    
         </>
