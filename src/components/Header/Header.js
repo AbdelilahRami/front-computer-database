@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import {
   Navbar,
@@ -19,10 +19,10 @@ export default function Header() {
 
   return (
     <Router>
-      <header id="header">
+      <header id="header"style={{cursor:'pointer'}}>
         <Navbar bg="info" variant="dark" style={{ position: 'sticky' }}>
-          <Navbar.Brand href="/computers">Home Menu</Navbar.Brand>
-          <Nav className="mr-auto">
+          <Navbar.Brand href="/computers">Home</Navbar.Brand>
+          <Nav variant="white" className="mr-auto">
             <Nav.Link href="/computers">Computers</Nav.Link>
             <Nav.Link href="/companies"> Companies</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>

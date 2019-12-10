@@ -112,7 +112,7 @@ export function Computers({ editRow }) {
      </Col>
      <Col sm={5}>
           <h3>
-            Computer numbers : 
+            Computer numbers :    
             <Badge variant="danger">{computers.nbComputer} </Badge>
           </h3>
     </Col>

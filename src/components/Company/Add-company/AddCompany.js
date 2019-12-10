@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { Input, Button } from 'reactstrap';
-import {Form, Label, } from 'reactstrap';
+import {Form, Label, FormGroup} from 'reactstrap';
 import useForm from './useForm';
 import validate from './validate-company'
 
@@ -23,13 +23,19 @@ export function AddCompany({addCompany,setAdding}){
 
         <Form className="form"
                 onSubmit={handleSubmit}>
-            <h2>Adding company form</h2>
-            <Label>Name</Label>
-            <Input type="text" name="name" value={company.name} onChange={handleChange} />
+            <div style={{textAlign:'center'}}>
+                      <h2 style={{color:'#6c757d'}}>Adding company form</h2>
+            </div>
+            <FormGroup>
+                <Label for="exampleDatetime">Name</Label>
+                 <Input type="text" name="name" value={company.name} onChange={handleChange} />
+            </FormGroup>
             {errors.name && <p>{errors.name}</p>}
             <div>{error ? "error" : ""}</div>
-            <Button>Add Company</Button>&nbsp;&nbsp;&nbsp;
-            <Button onClick={() => setAdding(false)} className="button muted-button">Cancel</Button>
+            <div style={{textAlign:'center'}}>
+                <Button style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}}>Add Company</Button>&nbsp;&nbsp;&nbsp;
+                <Button onClick={() => setAdding(false)} style={{ color: 'white', backgroundColor: '#6c757d', borderColor:'#6c757d'}} >Cancel</Button>
+            </div>
         </Form>
     );
 }
