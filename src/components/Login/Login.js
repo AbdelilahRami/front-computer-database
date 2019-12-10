@@ -25,7 +25,6 @@ export default function Login({log}) {
     }
     return (
         <>
-            {error ? <div>Error de connection, identifiant ou mot de passe incorrect</div> : <></>}
 
             {login ? <Redirect to="/computers" /> :
 
@@ -43,6 +42,8 @@ export default function Login({log}) {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" onChange={event => setIndentifiant({ ...indentifiant, password: event.target.value })} />
                         </FormGroup>
+                        {error ? <div style={{color:'red'}}>Error de connection, identifiant ou mot de passe incorrect</div> : <></>}
+                        <br/>
                         <div style={{textAlign:'center'}}>
                                 <Button style={{backgroundColor:'#17a2b8',borderColor:'#17a2b8',marginLeft:'auto',width:'20%'}} size="lg" onClick={() => show()}>
                                     Submit

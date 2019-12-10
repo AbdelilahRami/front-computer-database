@@ -43,7 +43,9 @@ console.log(computer)
   return (
     <Form className="form"
       onSubmit={handleSubmit} >
-      <h2>Editing Computer Form</h2>
+      <div style={{textAlign:'center'}}>
+          <h2 style={{color:'#6c757d'}}>Editing Computer Form</h2>
+          </div>
       <FormGroup>
         <Label for="exampleDatetime">Name</Label>
         <Input
@@ -87,8 +89,11 @@ console.log(computer)
           {companies.map(company => <option value={company.name} key={company.id} >{company.name}</option>)}
         </Input>
       </FormGroup>
-      <button>Edit Computer</button>&nbsp;&nbsp;&nbsp;
-      <button onClick={() => setEditing(false)} className="button muted-button">Cancel</button>
+      <div style={{textAlign:'center'}}>
+          <button style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}}>Edit Computer</button>&nbsp;&nbsp;&nbsp;
+    <button onClick={() => setEditing(false)} className="button muted-button">Cancel</button>
+          </div>
+
       <p></p>
     </Form>
   )

@@ -113,8 +113,7 @@ export default function Footer({ recupererLimite, maxPage, recupererActualPage, 
             <Navbar color="info" dark style={{ width: '100%' }}>
                 <Container>
                     <NavbarBrand>2019-2020</NavbarBrand>
-                    {stategauche ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleLeft} onClick={() => pageIteration(true)} /> : <></>}
-
+                    {stategauche ? <FontAwesomeIcon  style={{ color: 'white', width:'3%' ,height:'1%'}} icon={faAngleDoubleLeft} onClick={() => pageIteration(true)} /> : <></>}
                     <button style={{ color: 'white', backgroundColor: actPage === 1 ? '#dc3545' : 'gray', borderColor: actPage === 1 ? '#dc3545' : 'gray' }} onClick={() => showButton(1)}>1</button>
                     {
                         actPage <= 4 ? <></> : <button style={{ color: 'gray', backgroundColor: 'white', borderColor: 'white' }} onClick={() => { }}>...</button>
@@ -125,10 +124,11 @@ export default function Footer({ recupererLimite, maxPage, recupererActualPage, 
                     {
                         actPage >= maxPage - 3 ? <></> : <button style={{ color: 'gray', backgroundColor: 'white' }} onClick={() => { }}>...</button>
                     }
+
                     {1 === maxPage  ? <></>
                         : <button style={{ color: 'white', backgroundColor: actPage === maxPage ? '#dc3545' : 'gray', borderColor: actPage === maxPage ? '#0069d9' : 'gray' }} onClick={() => showButton(maxPage)}>{maxPage}</button>
                     }
-                    {statedroite && !(actPage === maxPage) ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleRight} onClick={() => pageIteration(false)} /> : <></>}
+                    {{statedroite ? <FontAwesomeIcon style={{ color: 'white' ,width:'3%' ,height:'1%' }} icon={faAngleDoubleRight} onClick={() => pageIteration(false)} /> : <></>}
 
                     <Input style={{ width: '75px' }} value={limite} type="select" onChange={(event) => sendlimite(event.target.value)} >
                         <option>10</option>

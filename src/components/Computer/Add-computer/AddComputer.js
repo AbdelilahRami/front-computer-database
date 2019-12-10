@@ -58,7 +58,9 @@ export default function AddComputer() {
       onSubmit={handleSubmit}
 
     >
-    <h2>Adding Computer Form</h2>
+    <div style={{textAlign:'center'}}>
+        <h2 style={{color:'#6c757d'}}>Adding Computer Form</h2>
+    </div>
       <FormGroup>
         <Label for="exampleDatetime">Name</Label>
         <Input
@@ -103,8 +105,10 @@ export default function AddComputer() {
           {companies.map(company => <option value={company.name} key={company.id} >{company.name}</option>)}
         </Input>
       </FormGroup>
-      <button>Add Computer</button>&nbsp;&nbsp;&nbsp;
-      <button type="button" onClick={cancelForm} className="button muted-button">Cancel</button>
+      <div style={{textAlign:'center'}}>
+            <button style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}}>Add Computer</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" onClick={cancelForm} className="button muted-button">Cancel</button>  
+
       <p></p>
     </Form>}
     </>
