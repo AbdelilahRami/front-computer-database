@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { Input, Button } from 'reactstrap';
-import { Container, Col, Row, Form, FormGroup, Label, } from 'reactstrap';
+import {Form, Label, } from 'reactstrap';
 import useForm from './useForm';
 import validate from './validate-company'
 
@@ -15,9 +15,10 @@ export function AddCompany({addCompany,setAdding}){
     const [disable,setDisable]= useState(false);
     let error="";
     function submit(){
-        console.log(company)
-        addCompany(company)
-      }
+      console.log(company)
+      addCompany(company)
+    }
+
     return(
 
         <Form className="form"

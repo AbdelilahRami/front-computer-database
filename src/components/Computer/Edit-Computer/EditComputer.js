@@ -9,8 +9,7 @@ function EditComputer({ updateComputer, currentComputer }) {
   const [companies, setCompanies] = useState([]);
   const [computer, setComputer] = useState(currentComputer);
   const { handleSubmit, errors } = useForm(
-    submit,
-    validate, computer
+    submit,validate, computer
   );
 
   function getCompanyDTO(event) {
@@ -24,18 +23,9 @@ function EditComputer({ updateComputer, currentComputer }) {
     const { name, value } = event.target
     setComputer({ ...computer, [name]: value })
   }
-  //   function handleSubmit(event) {
-  //     console.log('im in handle')
-  //     let formIsValid = false;
-  //     event.preventDefault();
-  //     updateComputer(computer.id,computer);
-  //   }
-
 
   function submit() {
-    console.log(computer)
-    updateComputer(computer.id, computer)
-
+    updateComputer(computer)
   }
 
 

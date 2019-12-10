@@ -1,10 +1,8 @@
 import { Col, Row } from 'reactstrap'
-import AddComputer from './Add-computer/AddComputer';
 import  Button  from 'react-bootstrap/Button';
-import {Input, Container} from 'react-bootstrap';
 import EditComputer from './Edit-Computer/EditComputer'
 import React, { useState, useEffect } from 'react';
-import { getComputer, deleteComputers } from '../../containers/computer/Computers.hook'
+import { getComputer, deleteComputers, updateComputers } from '../../containers/computer/Computers.hook'
 import Computer from './Computer'
 import Table from 'react-bootstrap/Table'
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -80,18 +78,11 @@ export function Computers({ editRow }) {
     setCurrentComputer(computer)
   }
 
-  function editComputer(id, updatedComputer) {
-    console.log('im inediting')
-    setComputers(computers.map(computer => (computer.id === id ? updatedComputer : computer)))
-    setEditingMode(false)
-  }
-
-  function searchComputer() {
-    getComputer(page).then(
-      response => {
+  function editComputer(updatedComputer) {
+    updateComputers(updatedComputer).then(()=>{setEditingMode(false)
+      getComputer(page).then(response => {
         setComputers(response.data || [])
-      }
-    )
+      })})
   }
 
   return (

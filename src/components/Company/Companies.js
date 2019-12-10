@@ -14,10 +14,10 @@ export function Companies() {
   const [editing, setEditing] = useState(false);
   const [adding, setAdding] = useState(false);
 
-  useEffect(() =>
+  useEffect(() =>{
     getCompanies().then(response => {
       setCompanies(response.data)
-    }), [])
+    })}, [])
 
   function addCompany(company) {
     setAdding(false);

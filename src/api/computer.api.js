@@ -25,3 +25,9 @@ export async function createComputer(computer){
     .then(response=>{return response})
     .catch(error=>console.log(error))
 }
+
+export async function updateComputer(computer){
+    return await Axios.put(adresse,computer)
+    .then(response=>{return response})
+    .catch(error=>console.log(error))
+}

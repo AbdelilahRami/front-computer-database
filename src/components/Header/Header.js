@@ -5,11 +5,9 @@ import {
   Nav,Button,Form
 } from 'react-bootstrap';
 import { Computers } from '../Computer/Computers';
-import AddCompany from '../Company/Add-company/AddCompany'
 import Login from '../Login/Login';
 import AuthenticatedRoute from './AuthenticatedRoute'
 import './myheader.css'
-import {Companies} from '../Company/Companies';
 import AuthenticationService from '../Login/AuthenticationService'
 import AddComputer from '../Computer/Add-computer/AddComputer';
 
