@@ -29,6 +29,7 @@ export default function AddComputer() {
     addComputer(computer).then(()=>setAjout(true))
   }
 
+
   function handleChange(event) {
     const { name, value } = event.target
     setComputer({ ...computer, [name]: value })
