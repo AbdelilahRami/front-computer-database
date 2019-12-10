@@ -4,11 +4,10 @@ import { Container, Col, Row, Form, FormGroup, Label, } from 'reactstrap';
 import useForm from './useForm';
 import validate from './validate-company'
 export function AddCompany({addCompany,setAdding}){
-    const { handleChange, handleSubmit,company, errors } = useForm(
+    const { handleChange, handleSubmit,company, errors} = useForm(
         submit,
         validate
       );
-
     const initialFormState ={id:null, name:''}
 
     //const [company,setCompany] = useState(initialFormState);
@@ -17,9 +16,7 @@ export function AddCompany({addCompany,setAdding}){
     function submit(){
         console.log(company)
         addCompany(company)
-    
       }
-   
     return(
 
         <Form className="form"
@@ -29,7 +26,7 @@ export function AddCompany({addCompany,setAdding}){
             <Input type="text" name="name" value={company.name} onChange={handleChange} />
             {errors.name && <p>{errors.name}</p>}
             <div>{error ? "error" : ""}</div>
-            <Button disabled={disable}>Add Company</Button>&nbsp;&nbsp;&nbsp;
+            <Button>Add Company</Button>&nbsp;&nbsp;&nbsp;
             <Button onClick={() => setAdding(false)} className="button muted-button">Cancel</Button>
         </Form>
     );
