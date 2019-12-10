@@ -1,49 +1,35 @@
 
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
-function useForm(callback,validate,currentComputer){
-  console.log(currentComputer+'tatata')
-    const initialsForm = { id: null, name: '', introduced: '', discontinued: '', companyDTO: { id: null, name: '' } };
-    const [computer, setComputer] = useState(initialsForm);
-    const [companyDTO, setCompanyDTO] = useState({ id: null, name: '' });
-    const [errors, setErrors] = useState({});
-    const [isSubmitting, setIsSubmitting] = useState(false);
+function useForm(callback, validate, currentComputer) {
 
-  
-      function handleSubmit(event) {
-        console.log('im in handle')
-        let formIsValid = false;
-        event.preventDefault();
-        setErrors(validate(computer));
-        setIsSubmitting(true);
-      }
-      useEffect(() => {
-        if (Object.keys(errors).length === 0 && isSubmitting) {
-          callback();
-        }
-      }, [errors]);
+  const [computer, setComputer] = useState({ id: null, name: '', introduced: '', discontinued: '', companyDTO: { id: null, name: '' } });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-      useEffect(    
-        () => {
-            console.log('use effect')
-            setComputer(currentComputer)
-        },
-        [currentComputer]
-    )
+  function handleSubmit(event) {
+    event.preventDefault();
+    setErrors(validate(computer));
+    setIsSubmitting(true);
+  }
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && isSubmitting) {
+      callback();
+    }
+  }, [errors]);
 
-      useEffect(    
-        () => {
-            console.log('use effect')
-            setComputer(computer)
-        },
-        [computer]
-    )
+  useEffect(
+    () => {
+      setComputer(currentComputer)
+    },
+    [currentComputer]
+  )
 
-
-      return {
-        handleSubmit,
-        computer,
-        errors
-      };
+  return {
+    handleSubmit,
+    computer,
+    errors
+  };
 };
+
 export default useForm;
