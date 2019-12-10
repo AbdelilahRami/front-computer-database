@@ -7,7 +7,7 @@ class AuthenticationService {
 
     registerSuccessfulLoginForJwt(username, token) {
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
-        sessionStorage.setItem(USER_TOKEN,token)
+        sessionStorage.setItem(USER_TOKEN, token)
     }
 
     createJWTToken() {
@@ -15,13 +15,11 @@ class AuthenticationService {
     }
 
     setupAxiosInterceptors() {
-        console.log(this.createJWTToken())
         Axios.interceptors.request.use(
             (config) => {
                 if (this.isUserLoggedIn()) {
                     config.headers.authorization = this.createJWTToken()
                 }
-                console.log(config)
                 return config
             }
         )
