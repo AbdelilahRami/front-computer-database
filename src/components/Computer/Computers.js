@@ -94,13 +94,13 @@ export function Computers({ editRow }) {
 
   return (
     <div>
-      {addingMode ? <Redirect to='/computers/addComputer' />:<></>}
-          {
-            EditingMode ?
-            <>
-              <EditComputer updateComputer={editComputer} currentComputer={currentComputer} />
-            </>
-            :
+      {addingMode ? <Redirect to='/computers/addComputer' /> : <></>}
+      {
+        EditingMode ?
+          <>
+            <EditComputer updateComputer={editComputer} currentComputer={currentComputer} />
+          </>
+          :
 
           <>
             <Row>
