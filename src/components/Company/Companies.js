@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'reactstrap';
+import  Table  from 'react-bootstrap/Table';
 import { Company } from './Company'
 import { getCompanies, createCompany, updateCompany } from '../../containers/company/Companies.hook';
 import EditCompany from './Edit-company/EditCompany';
+import { Col, Row } from 'reactstrap'
 import AddCompany from './Add-company/AddCompany';
 
 export function Companies() {
@@ -43,8 +44,14 @@ export function Companies() {
   return (
     <div>
       {!editing && !adding ? <>
-        <button onClick={() => setAdding(!adding)} className="button muted-button float-right">Add Company</button>
-        <Table responsive striped bordered hover width="50%" size="sm">
+        <Row>
+            <Col sm={3}>
+            </Col>
+            <Col sm={6}>
+                <button style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}} onClick={() => setAdding(!adding)}>Add Company</button>
+            </Col>
+        </Row>
+        <Table striped bordered hover style={{marginLeft:'auto',marginRight:'auto',width:'50%'}}>
           <thead>
             <tr>
               <th>Id</th>

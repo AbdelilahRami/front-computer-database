@@ -96,44 +96,38 @@ export function Computers({ editRow }) {
 
   return (
     <div>
-      {addingMode ? <Redirect to='/computers/addComputer' /> : <></>}
+   {addingMode ? <Redirect to='/computers/addComputer' /> : <></>}
       {
         EditingMode ?
           <>
             <EditComputer updateComputer={editComputer} currentComputer={currentComputer} />
           </>
           :
-
-          <>
-            <Row>
-              <Col sm={4}>
-              </Col>
-              <Col sm={3}>
-                <input style={{ width: "3000px", align: "center" }} size="sm" type="text" placeholder="Veuillez saisir un computer name" onChange={event => setPage({ ...page, search: event.target.value })} />
-              </Col>
-              <Col sm={2}>
-                <Button size="lg" style={{ color: 'white', backgroundColor: 'gray', borderColor: 'gray' }} variant="secondary" type="submit" onClick={() => searchComputer()}>Search</Button>
-              </Col>
-              <Col sm={-5}>
-                <Button size="lg" style={{ color: 'white', backgroundColor: '#17a2b8', borderColor: '#17a2b8' }} variant="secondary" type="submit" className="btn btn-secondary float-right" onClick={() => setAdding(!addingMode)}>Add Computer</Button>
-              </Col>
-            </Row>
-
-            <br />
-            <Row>
-              <Col sm={2}>
-              </Col>
-              <Col sm={5}>
-                <h2>
-                  Nombre d'ordinateurs :
+      <>
+      <Row>
+      <Col sm={3}>
+      </Col>
+      <Col sm={4}>
+      <input  style={{ width: "3000px", align: "center" }} size="sm" type="text" placeholder="Veuillez saisir un computer name" onChange={event => setPage({...page,search:event.target.value})} />
+      </Col>
+      <Col sm={4}>
+      <Button size="lg" style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}} variant="secondary" type="submit" className="btn btn-secondary float-right" onClick={() => setAdding(!addingMode)}>Add Computer</Button>
+      </Col>
+      </Row>
+     
+     <br />
+     <Row>
+     <Col sm={2}>
+     </Col>
+     <Col sm={5}>
+          <h3>
+            Nombre d'ordinateurs : 
             <Badge variant="danger">{computers.nbComputer} </Badge>
-                </h2>
-              </Col>
-            </Row>
+          </h3>
+    </Col>
+    </Row>          
             <br />
-            <Container className="themed-container" fluid="lg">
-            <Table striped bordered hover>
-
+            <Table striped bordered hover style={{marginLeft:'auto',marginRight:'auto',width:'90%'}}>
               <thead>
                 <tr>
                   <th>  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()} /> </th>

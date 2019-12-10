@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import {
   Navbar,
-  Nav
+  Nav,Button,Form
 } from 'react-bootstrap';
 import { Computers } from '../Computer/Computers';
 import AddCompany from '../Company/Add-company/AddCompany'
@@ -10,8 +10,8 @@ import Login from '../Login/Login';
 import AuthenticatedRoute from './AuthenticatedRoute'
 import './myheader.css'
 import {Companies} from '../Company/Companies';
+import AuthenticationService from '../Login/AuthenticationService'
 import AddComputer from '../Computer/Add-computer/AddComputer';
-
 
 export default function Header() {
   return (
@@ -24,12 +24,20 @@ export default function Header() {
             <Nav.Link href="/companies"> Companies</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
           </Nav>
-        </Navbar>
+          {
+            AuthenticationService.isUserLoggedIn()?
+            <Form inline>
+               <Button style={{ color: 'white', backgroundColor: 'gray', borderColor:'gray',height:'50px'}}>Logout</Button>
+            </Form>
+          :
+          <></>
+          }
+          </Navbar>
       </header>
       <br />
       <Switch>
         <Route path="/companies">
-          <AuthenticatedRoute />
+          <Companies />
         </Route>
         <Route path="/computers/addComputer">
           <AddComputer />
