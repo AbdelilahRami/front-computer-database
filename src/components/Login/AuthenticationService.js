@@ -3,7 +3,7 @@ import Axios from 'axios'
 const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 const USER_TOKEN = 'token'
 
-export default new class AuthenticationService {
+class AuthenticationService {
 
     registerSuccessfulLoginForJwt(username, token) {
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
@@ -38,3 +38,5 @@ export default new class AuthenticationService {
         sessionStorage.removeItem(USER_TOKEN);
     }
 }
+
+export default new AuthenticationService()

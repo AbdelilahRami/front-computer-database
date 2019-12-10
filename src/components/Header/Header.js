@@ -1,9 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import {
-  Navbar,
-  Nav,Button,Form
-} from 'react-bootstrap';
+import { Navbar, Nav,Button,Form } from 'react-bootstrap';
 import { Computers } from '../Computer/Computers';
 import Login from '../Login/Login';
 import AuthenticatedRoute from './AuthenticatedRoute'
@@ -13,8 +10,10 @@ import AddComputer from '../Computer/Add-computer/AddComputer';
 
 export default function Header() {
 
+  const [isLog,setIslog] = useState(false)
   function logout(){
     AuthenticationService.logout()
+    setIslog(false)
   }
 
   return (
@@ -25,10 +24,10 @@ export default function Header() {
           <Nav className="mr-auto">
             <Nav.Link href="/computers">Computers</Nav.Link>
             <Nav.Link href="/companies"> Companies</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
+            {!isLog?<Nav.Link href="/login">Login</Nav.Link>:<></>}
           </Nav>
           {
-            AuthenticationService.isUserLoggedIn()?
+            isLog?
             <Form inline>
                <Button style={{ color: 'white', backgroundColor: 'gray', borderColor:'gray',height:'50px'}} onClick={()=>logout()}>Logout</Button>
             </Form>
@@ -49,19 +48,10 @@ export default function Header() {
           <Computers />
         </Route>
         <Route path="/login">
-          <Login />
+          <Login log={setIslog}/>
         </Route>
         <Redirect exact from="/**" to="computers" />
       </Switch>
     </Router>
   );
-
-  function scrollFunction() {
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-      document.getElementById("header").style.fontSize = "30px";
-    } else {
-      document.getElementById("header").style.fontSize = "90px";
-    }
-    window.onscroll = function () { scrollFunction() };
-  }
 }
