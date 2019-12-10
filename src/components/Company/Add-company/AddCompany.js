@@ -30,7 +30,7 @@ export function AddCompany({addCompany,setAdding}){
             <Input type="text" name="name" value={company.name} onChange={handleChange} />
             {errors.name && <p>{errors.name}</p>}
             <div>{error ? "error" : ""}</div>
-            <Button disabled={disable}>Add Company</Button>&nbsp;&nbsp;&nbsp;
+            <Button>Add Company</Button>&nbsp;&nbsp;&nbsp;
             <Button onClick={() => setAdding(false)} className="button muted-button">Cancel</Button>
         </Form>
     );

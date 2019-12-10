@@ -92,7 +92,7 @@ console.log(computer)
       </FormGroup>
       <FormGroup>
         <Label for="exampleSelect">Company</Label>
-        <Input value={computer.companyDTO.name} type="select" onChange={getCompanyDTO} name="select" id="exampleSelect">
+        <Input value={computer.companyDTO?computer.companyDTO.name:""} type="select" onChange={getCompanyDTO} name="select" id="exampleSelect">
           <option key="0" value=""></option>
           {companies.map(company => <option value={company.name} key={company.id} >{company.name}</option>)}
         </Input>

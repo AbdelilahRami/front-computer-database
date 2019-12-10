@@ -5,25 +5,30 @@ import './Add-computer.css'
 import { Input, FormGroup, Label, Form } from 'reactstrap';
 import { getCompanies } from '../../../containers/company/Companies.hook';
 
-function AddComputer() {
+export default function AddComputer() {
 
   const [companies, setCompanies] = useState([]);
-  const { handleChange, handleSubmit,getCompanyDTO, computer, errors } = useForm(
+  const initialsForm = { id: null, name: '', introduced: '', discontinued: '', companyDTO: { id: null, name: '' } };
+  const [computer, setComputer] = useState(initialsForm);
+  const { handleSubmit,getCompanyDTO, errors } = useForm(
     submit,
-    validate
+    validate,computer
   );
 
   function submit(){
     console.log(computer)
     addComputer(computer)
   }
+  function handleChange(event) {
+    const { name, value } = event.target
+    setComputer({ ...computer, [name]: value })
+    console.log(value)
+  }
 
   function addComputer(computer) {
     console.log(computer)
   }
 
-  
- 
   useEffect(() =>{
     getCompanies().then(
       response => {
@@ -81,10 +86,10 @@ function AddComputer() {
           <option key="0" value=""></option>
           {companies.map(company => <option value={company.name} key={company.id} >{company.name}</option>)}
         </Input>
-      </FormGroup>
-      <button disabled={errors}>Add Computer</button>
+      </FormGroup>{console.log(errors)}
+      <button>Add Computer</button>
       <p></p>
     </Form>
+
   )
 }
-export default AddComputer;
