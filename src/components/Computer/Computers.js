@@ -1,6 +1,5 @@
 import { Col, Row } from 'reactstrap'
 import AddComputer from './Add-computer/AddComputer';
-import { Label } from 'reactstrap';
 import  Button  from 'react-bootstrap/Button';
 import {Input, Container} from 'react-bootstrap';
 import EditComputer from './Edit-Computer/EditComputer'
@@ -12,10 +11,9 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../Footer/footer';
 import Badge from 'react-bootstrap/Badge'
+
 export function Computers({editRow}) {
 
-
-  const [statechampSearch, setchampSearch] = useState();
   //state for adding mode and editing mode
   const [addingMode, setAdding] = useState(false);
   const [EditingMode, setEditingMode] = useState(false);
@@ -23,28 +21,37 @@ export function Computers({editRow}) {
   const initialEditingForm = { id: null, name: '', introduced: '', discontinued: '', companyDTO: { id: null, name: '' } };
   //initial state for computer
   const [currentComputer, setCurrentComputer] = useState(initialEditingForm);
-  //const [computers,setComputers] = useState(useComputers())
+
   const [page,setPage]=useState({search:'',limite:10,actPage:1})
   const [computers,setComputers]=useState({listComputer:[],nbComputer:0})
-  const [maxPage,setmaxpage]=useState()
+  const [maxPage,setmaxpage]=useState(1)
   let ids=[]
   
   function recupererActualPage(actual){
     setPage({ ...page,actPage:actual })
-    console.log(actual)
-  }
-  function recupererLimite(mylimit) {
-    setPage({ ...page, limite: mylimit, actPage: 1 })
-    var resulte = Math.round(computers.nbComputer / mylimit)
-    setmaxpage(resulte)
-  }
-  useEffect(() =>
     getComputer(page).then(
       response => {
         setComputers(response.data || [])
-        recupererLimite(10)
       }
-    ), [])
+    )
+  }
+
+  function recupererLimite(mylimit) {
+    setPage({ ...page,actPage:1, limite: mylimit })
+    var resulte = Math.round(computers.nbComputer / mylimit)
+    setmaxpage(resulte)
+  }
+  
+  useEffect(() =>{
+    getComputer(page).then(
+      response => {
+        setComputers(response.data || [])
+        setmaxpage(Math.round(response.data.nbComputer / page.limite))
+      }
+    )
+  }
+  , [page])
+
   function arrayRemove(arr, value) {
     return arr.filter(function (ele) {
       return ele !== value;
@@ -91,7 +98,7 @@ export function Computers({editRow}) {
     setEditingMode(false)
   }
 
-  function showName() {
+  function searchComputer() {
     getComputer(page).then(
       response => {
         setComputers(response.data || [])
@@ -108,10 +115,10 @@ export function Computers({editRow}) {
       <Col sm={4}>
       </Col>
       <Col sm={3}>
-      <input  style={{ width: "3000px", align: "center" }} size="sm" type="text" placeholder="Veuillez saisir un computer name" onChange={event => setchampSearch(event.target.value)} />
+      <input  style={{ width: "3000px", align: "center" }} size="sm" type="text" placeholder="Veuillez saisir un computer name" onChange={event => setPage({...page,search:event.target.value})} />
       </Col>
       <Col sm={2}>
-      <Button size="lg" style={{ color: 'white', backgroundColor:'gray',borderColor:'gray' }} variant="secondary" type="submit" onClick={() => showName()}>Search</Button>
+      <Button size="lg" style={{ color: 'white', backgroundColor:'gray',borderColor:'gray' }} variant="secondary" type="submit" onClick={() => searchComputer()}>Search</Button>
       </Col>
       <Col sm={-5}>
       <Button size="lg" style={{ color: 'white', backgroundColor: '#17a2b8', borderColor:'#17a2b8'}} variant="secondary" type="submit" className="btn btn-secondary float-right" onClick={() => setAdding(!addingMode)}>Add Computer</Button>
@@ -125,7 +132,7 @@ export function Computers({editRow}) {
      <Col sm={5}>
           <h2>
             Nombre d'ordinateurs : 
-            <Badge variant="danger">522{computers.count} </Badge>
+            <Badge variant="danger">{computers.nbComputer} </Badge>
           </h2>
     </Col>
     </Row>          
