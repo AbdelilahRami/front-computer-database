@@ -4,29 +4,34 @@ import validate from './validateForm';
 import './Add-computer.css'
 import { Input, FormGroup, Label, Form } from 'reactstrap';
 import { getCompanies } from '../../../containers/company/Companies.hook';
+import { addComputer } from '../../../containers/computer/Computers.hook';
+import { Redirect } from 'react-router-dom';
 
 export default function AddComputer() {
 
+  const [ajout,setAjout] = useState(false)
   const [companies, setCompanies] = useState([]);
   const initialsForm = { id: null, name: '', introduced: '', discontinued: '', companyDTO: { id: null, name: '' } };
   const [computer, setComputer] = useState(initialsForm);
-  const { handleSubmit,getCompanyDTO, errors } = useForm(
+  const { handleSubmit, errors } = useForm(
     submit,
     validate,computer
   );
 
-  function submit(){
-    console.log(computer)
-    addComputer(computer)
+  function getCompanyDTO(event) {
+    const companyName = event.target.value;
+    const idCompany = event.target.options.selectedIndex;
+    const companyDTOX = { id: idCompany, name: companyName };
+    setComputer({ ...computer, companyDTO: companyDTOX })
   }
+
+  function submit(){
+    addComputer(computer).then(()=>setAjout(true))
+  }
+
   function handleChange(event) {
     const { name, value } = event.target
     setComputer({ ...computer, [name]: value })
-    console.log(value)
-  }
-
-  function addComputer(computer) {
-    console.log(computer)
   }
 
   useEffect(() =>{
@@ -39,6 +44,10 @@ export default function AddComputer() {
   , [])
 
   return (
+    <>
+    {ajout ? <Redirect to='/computers' />
+      
+    :
     <Form className="form"
       onSubmit={handleSubmit}
 
@@ -66,6 +75,7 @@ export default function AddComputer() {
           onChange={handleChange}
           placeholder="Introduced date"
         />
+        {errors.introduced && <p className="Stylish">{errors.introduced}</p>}
       </FormGroup>
       <FormGroup>
         <Label for="exampleDate">Discontinued Date</Label>
@@ -77,7 +87,7 @@ export default function AddComputer() {
           id="discontinued"
           placeholder="discontinued date"
         />
-        {errors.introduced && <p className="Stylish">{errors.introduced}</p>}
+        {errors.discontinued && <p className="Stylish">{errors.discontinued}</p>}
 
       </FormGroup>
       <FormGroup>
@@ -86,10 +96,10 @@ export default function AddComputer() {
           <option key="0" value=""></option>
           {companies.map(company => <option value={company.name} key={company.id} >{company.name}</option>)}
         </Input>
-      </FormGroup>{console.log(errors)}
+      </FormGroup>
       <button>Add Computer</button>
       <p></p>
-    </Form>
-
+    </Form>}
+    </>
   )
 }

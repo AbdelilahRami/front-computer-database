@@ -3,15 +3,11 @@ import { useState, useEffect } from 'react'
 
 function useForm(callback, validate, currentComputer) {
 
-  const initialsForm = { id: null, name: '', introduced: '', discontinued: '', companyDTO: { id: null, name: '' } };
-  const [computer, setComputer] = useState(initialsForm);
-  const [companyDTO, setCompanyDTO] = useState({ id: null, name: '' });
+  const [computer, setComputer] = useState({ id: null, name: '', introduced: '', discontinued: '', companyDTO: { id: null, name: '' } });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-
   function handleSubmit(event) {
-    console.log('im in handle')
     event.preventDefault();
     setErrors(validate(computer));
     setIsSubmitting(true);
@@ -24,20 +20,10 @@ function useForm(callback, validate, currentComputer) {
 
   useEffect(
     () => {
-      console.log('use effect')
       setComputer(currentComputer)
     },
     [currentComputer]
   )
-
-  useEffect(
-    () => {
-      console.log('use effect')
-      setComputer(computer)
-    },
-    [computer]
-  )
-
 
   return {
     handleSubmit,
@@ -45,4 +31,5 @@ function useForm(callback, validate, currentComputer) {
     errors
   };
 };
+
 export default useForm;

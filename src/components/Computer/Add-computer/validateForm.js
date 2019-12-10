@@ -5,7 +5,6 @@ export default function validate(computer) {
     }
 
     if (Date.parse(computer.introduced) > Date.parse(computer.discontinued)) {
-        console.log(Date.parse(computer.introduced))
         errors.introduced = "introduced is before discontinued";
     }
 
