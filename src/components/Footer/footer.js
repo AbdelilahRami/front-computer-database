@@ -128,7 +128,7 @@ export default function Footer({ recupererLimite, maxPage, recupererActualPage, 
                     {1 === maxPage  ? <></>
                         : <button style={{ color: 'white', backgroundColor: actPage === maxPage ? '#dc3545' : 'gray', borderColor: actPage === maxPage ? '#0069d9' : 'gray' }} onClick={() => showButton(maxPage)}>{maxPage}</button>
                     }
-                    {{statedroite ? <FontAwesomeIcon style={{ color: 'white' ,width:'3%' ,height:'1%' }} icon={faAngleDoubleRight} onClick={() => pageIteration(false)} /> : <></>}
+                    {statedroite ? <FontAwesomeIcon style={{ color: 'white' ,width:'3%' ,height:'1%' }} icon={faAngleDoubleRight} onClick={() => pageIteration(false)} /> : <></>}
 
                     <Input style={{ width: '75px' }} value={limite} type="select" onChange={(event) => sendlimite(event.target.value)} >
                         <option>10</option>
