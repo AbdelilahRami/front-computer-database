@@ -149,8 +149,6 @@ export function Computers({ editRow }) {
               </tbody>
             </Table>
 
-            </Container>
-
             <Footer recupererLimite={recupererLimite}
               maxPage={maxPage}
               recupererActualPage={recupererActualPage}

@@ -43,7 +43,7 @@ export default function Login() {
                             <Form.Control type="password" placeholder="Password" onChange={event => setIndentifiant({ ...indentifiant, password: event.target.value })} />
                         </FormGroup>
                         <div style={{textAlign:'center'}}>
-                                <Button style={{backgroundColor:'#17a2b8',borderColor:'#17a2b8',marginLeft:'auto',width:'20%'}} size="lg" type="submit" onClick={() => show()}>
+                                <Button style={{backgroundColor:'#17a2b8',borderColor:'#17a2b8',marginLeft:'auto',width:'20%'}} size="lg" onClick={() => show()}>
                                     Submit
 
                                 </Button>

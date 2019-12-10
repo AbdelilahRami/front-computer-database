@@ -35,5 +35,6 @@ export default new class AuthenticationService {
 
     logout() {
         sessionStorage.removeItem(USER_NAME_SESSION_ATTRIBUTE_NAME);
+        sessionStorage.removeItem(USER_TOKEN);
     }
 }

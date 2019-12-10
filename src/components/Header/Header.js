@@ -14,6 +14,11 @@ import AuthenticationService from '../Login/AuthenticationService'
 import AddComputer from '../Computer/Add-computer/AddComputer';
 
 export default function Header() {
+
+  function logout(){
+    AuthenticationService.logout()
+  }
+
   return (
     <Router>
       <header id="header">
@@ -27,7 +32,7 @@ export default function Header() {
           {
             AuthenticationService.isUserLoggedIn()?
             <Form inline>
-               <Button style={{ color: 'white', backgroundColor: 'gray', borderColor:'gray',height:'50px'}}>Logout</Button>
+               <Button style={{ color: 'white', backgroundColor: 'gray', borderColor:'gray',height:'50px'}} onClick={()=>logout()}>Logout</Button>
             </Form>
           :
           <></>
@@ -37,7 +42,7 @@ export default function Header() {
       <br />
       <Switch>
         <Route path="/companies">
-          <Companies />
+          <AuthenticatedRoute />
         </Route>
         <Route path="/computers/addComputer">
           <AddComputer />
