@@ -12,7 +12,10 @@ function AddComputer({ addComputer }) {
   );
   function submit(){
     console.log(computer)
-    addComputer(computer)
+    if(!errors){
+      addComputer(computer)
+    }
+    
 
   }
   const [companies, setCompanies] = useState(getCompanies());

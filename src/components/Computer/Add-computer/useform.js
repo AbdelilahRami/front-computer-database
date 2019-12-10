@@ -23,6 +23,7 @@ function useForm(callback,validate){
         let formIsValid = false;
         event.preventDefault()
         setErrors(validate(computer));
+        console.log(errors)
         setIsSubmitting(true);
       }
       useEffect(() => {
