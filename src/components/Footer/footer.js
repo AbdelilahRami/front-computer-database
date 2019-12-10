@@ -9,9 +9,7 @@ export default function Footer({ recupererLimite, maxPage, recupererActualPage, 
     const [actPage, setActPage] = useState(1)
     const [stategauche, setgauche] = useState(false)
     const [statedroite, setdroite] = useState(true)
-console.log("maxPage" + maxPage)
-console.log("actPage" + actPage)
-// console.log("maxPage" + maxPage)
+
     function iterateButton() {
         if (actPage === 1) {
             if (actPage !== maxPage) {
