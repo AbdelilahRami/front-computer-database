@@ -7,8 +7,8 @@ import StickyFooter from 'react-sticky-footer';
 export default function Footer({ recupererLimite, maxPage, recupererActualPage, limite }) {
 
     const [actPage, setActPage] = useState(1)
-    const [stategauche, setgauche] = useState(true)
-    const [statedroite, setdroite] = useState(false)
+    const [stategauche, setgauche] = useState(false)
+    const [statedroite, setdroite] = useState(true)
 
     function iterateButton() {
         if (actPage === 1) {
@@ -112,6 +112,7 @@ export default function Footer({ recupererLimite, maxPage, recupererActualPage, 
                 <Container>
                     <NavbarBrand>2019-2020</NavbarBrand>
                     {stategauche ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleLeft} onClick={() => pageIteration(true)} /> : <></>}
+                    
                     <button style={{ color: 'white', backgroundColor: actPage === 1 ? '#dc3545' : 'gray', borderColor: actPage === 1 ? '#dc3545' : 'gray' }} onClick={() => showButton(1)}>1</button>
                     {
                         actPage <= 4 ? <></> : <button style={{ color: 'gray', backgroundColor: 'white', borderColor: 'white' }} onClick={() => { }}>...</button>
