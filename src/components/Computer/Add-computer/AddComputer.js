@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useForm from './useform';
 import validate from './validateForm';
 import './Add-computer.css'
@@ -18,8 +18,11 @@ function AddComputer({ addComputer }) {
     
 
   }
-  const [companies, setCompanies] = useState(getCompanies());
- 
+  const [companies, setCompanies] = useState([]);
+ useEffect(()=>{
+   getCompanies().then(responce=>setCompanies(responce.data))
+ })
+
   return (
     <Form className="form"
       onSubmit={handleSubmit}

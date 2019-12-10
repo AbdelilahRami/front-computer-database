@@ -68,6 +68,7 @@ export function Computers({editRow}) {
   }
 
   function addComputer(computer) {
+    console.log('im in add')
     setAdding(false);
     computer.id = computers.length + 1;
     computers.push(computer)
