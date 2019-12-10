@@ -3,11 +3,11 @@ import Axios from 'axios'
 const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 const USER_TOKEN = 'token'
 
-export default new class AuthenticationService {
+class AuthenticationService {
 
     registerSuccessfulLoginForJwt(username, token) {
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
-        sessionStorage.setItem(USER_TOKEN,token)
+        sessionStorage.setItem(USER_TOKEN, token)
     }
 
     createJWTToken() {
@@ -15,13 +15,11 @@ export default new class AuthenticationService {
     }
 
     setupAxiosInterceptors() {
-        console.log(this.createJWTToken())
         Axios.interceptors.request.use(
             (config) => {
                 if (this.isUserLoggedIn()) {
                     config.headers.authorization = this.createJWTToken()
                 }
-                console.log(config)
                 return config
             }
         )
@@ -38,3 +36,5 @@ export default new class AuthenticationService {
         sessionStorage.removeItem(USER_TOKEN);
     }
 }
+
+export default new AuthenticationService()
