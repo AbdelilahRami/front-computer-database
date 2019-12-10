@@ -72,7 +72,7 @@ function AddComputer({ addComputer }) {
           {companies.map(company => <option value={company.name} key={company.id} >{company.name}</option>)}
         </Input>
       </FormGroup>
-      <button>Add Computer</button>
+      <button disabled={errors}>Add Computer</button>
       <p></p>
     </Form>
   )

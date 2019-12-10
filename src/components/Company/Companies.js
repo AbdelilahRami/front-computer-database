@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 import { Company } from './Company'
 import { getCompanies, createCompany, updateCompany } from '../../containers/company/Companies.hook';
 import EditCompany from './Edit-company/EditCompany';
-import AddCompany from './AddCompany';
+import AddCompany from './Add-company/AddCompany';
 
 export function Companies() {
 
@@ -35,6 +35,10 @@ export function Companies() {
       })
     })
   }
+  function editRow(company)  {
+    setEditing(true)
+    setCurrentCompany({id:company.id, name:company.name})
+  }
 
   return (
     <div>
@@ -53,6 +57,7 @@ export function Companies() {
                 <Company
                   company={company}
                   key={company.id}
+                  edit={editRow}
                 />
               )
             })}
@@ -62,12 +67,10 @@ export function Companies() {
       </>
         : adding ?
           <>
-            <h2>Add Company</h2>
-            <AddCompany addCompany={addCompany} />
+            <AddCompany setAdding={setAdding} addCompany={addCompany} />
           </>
           :
           <>
-            <h2>Edit Company</h2>
             <EditCompany
               editing={editing}
               setEditing={setEditing}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Col, Row, Form, Label,Input, Button } from 'reactstrap';
+import { Container, Col, Row, Label, Input } from 'reactstrap';
 import './Login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { authentificatePage } from '../../containers/Login/Login.hook'
@@ -7,7 +7,8 @@ import { Redirect } from 'react-router-dom'
 import AuthenticationService from './AuthenticationService'
 import './Login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { FormGroup, Form, FormLabel, FormControl, Button } from 'react-bootstrap';
+import Badge from 'react-bootstrap/Badge';
 export default function Login() {
 
     const [indentifiant, setIndentifiant] = useState({ username: "", password: "" })
@@ -16,34 +17,37 @@ export default function Login() {
 
     function show() {
         authentificatePage(indentifiant).then(responce => {
-            AuthenticationService.registerSuccessfulLoginForJwt(indentifiant.username,responce.data)
+            AuthenticationService.registerSuccessfulLoginForJwt(indentifiant.username, responce.data)
             setLogin(true)
         })
-        .catch(()=> setError(true))
+            .catch(() => setError(true))
     }
-
     return (
         <>
-        {error? <div>Error de connection, identifiant ou mot de passe incorrect</div>:<></>}
+            {error ? <div>Error de connection, identifiant ou mot de passe incorrect</div> : <></>}
 
             {login ? <Redirect to="/computers" /> :
 
-            <Container>
-            <Form className="form">
-            <Row><Col sm="3"><h2>Sign In</h2></Col></Row>
 
-                <Row>
-                    <Col xs="3"><Label>Username</Label></Col>
-                    <Col xs="3"><Input type="text" name="username" onChange={event => setIndentifiant({ ...indentifiant, username: event.target.value })} /></Col>
-                </Row>
-                <Row>
-                    <Col xs="3"><Label for="examplePassword">Password</Label></Col>
-                    <Col xs="3"><Input type="password" name="password" onChange={event => setIndentifiant({ ...indentifiant, password: event.target.value })} /></Col>
-                </Row>
-                <p></p>
-                <Row><Col xs="3"><Button onClick={() => show()}>Submit</Button></Col></Row>
-            </Form>
-        </Container>}
+                <Container>
+                    <Form className="form">
+                        <Row>
+                            <Col sm="4"></Col>
+                            <Col sm="5"><h1 style={{color:'#17a2b8',display:'block'}}>Sign In :</h1></Col></Row>
+                        <Form.Group>
+                            <Form.Label> Username :</Form.Label>
+                            <Form.Control type="text" placeholder="Enter a valid username" onChange={event => setIndentifiant({ ...indentifiant, username: event.target.value })} />
+                        </Form.Group>
+                        <FormGroup>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password" onChange={event => setIndentifiant({ ...indentifiant, password: event.target.value })} />
+                        </FormGroup>
+                        <Button style={{backgroundColor:'#17a2b8',borderColor:'#17a2b8'}}  type="submit" onClick={() => show()}>
+                            Submit
+                                </Button>
+                    </Form>
+                </Container>}
         </>
+
     )
 }

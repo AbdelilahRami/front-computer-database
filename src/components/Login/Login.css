@@ -2,7 +2,7 @@
     text-align: left;
     padding: 1em;
     margin: 1em;
-    border: 2px solid #d3d3d3;
+    border: 3px solid #6c757d;
     border-radius: .5em;
     vertical-align: middle;
     margin-left: auto;
@@ -17,10 +17,7 @@
     font-weight: 600;
   }
   
-  button {
-    justify-content: flex-end;
-  }
-  
+
   .App-title {
     font-size: 1.5em;
   }
@@ -33,3 +30,5 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
+
+  
