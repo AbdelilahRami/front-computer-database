@@ -16,9 +16,9 @@ export async function addCompany(company){
     .catch(error=>console.error(error))
 }
 
-export async function deleteCompany(company){
+export async function deleteCompan(company){
     AuthenticationService.setupAxiosInterceptors()
-    return await Axios.delete(adresse,company)
+    return await Axios.delete(adresse,{data :company})
     .then(response => {return response})
     .catch(error=>console.error(error))
 }

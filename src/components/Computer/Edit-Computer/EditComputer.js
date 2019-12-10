@@ -4,7 +4,7 @@ import { Input, FormGroup, Label, Form } from 'reactstrap';
 import { getCompanies } from '../../../containers/company/Companies.hook';
 import validate from './validateForm';
 
-function EditComputer({ updateComputer, currentComputer }) {
+function EditComputer({ updateComputer, currentComputer,setEditing }) {
 
   const [companies, setCompanies] = useState([]);
   const [computer, setComputer] = useState(currentComputer);
@@ -87,7 +87,8 @@ console.log(computer)
           {companies.map(company => <option value={company.name} key={company.id} >{company.name}</option>)}
         </Input>
       </FormGroup>
-      <button>Edit Computer</button>
+      <button>Edit Computer</button>&nbsp;&nbsp;&nbsp;
+      <button onClick={() => setEditing(false)} className="button muted-button">Cancel</button>
       <p></p>
     </Form>
   )
