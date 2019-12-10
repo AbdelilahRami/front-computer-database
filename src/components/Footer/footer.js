@@ -9,10 +9,12 @@ export default function Footer({ recupererLimite, maxPage, recupererActualPage, 
     const [actPage, setActPage] = useState(1)
     const [stategauche, setgauche] = useState(false)
     const [statedroite, setdroite] = useState(true)
-
+console.log("maxPage" + maxPage)
+console.log("actPage" + actPage)
+// console.log("maxPage" + maxPage)
     function iterateButton() {
         if (actPage === 1) {
-            if (actPage != maxPage) {
+            if (actPage !== maxPage) {
                 return (
                     <>
                         <button style={{ color: 'gray', backgroundColor: 'white', borderColor: 'white' }} onClick={() => showButton(actPage + 1)}>{actPage + 1}</button>
@@ -125,10 +127,10 @@ export default function Footer({ recupererLimite, maxPage, recupererActualPage, 
                     {
                         actPage >= maxPage - 3 ? <></> : <button style={{ color: 'gray', backgroundColor: 'white' }} onClick={() => { }}>...</button>
                     }
-                    {actPage == actPage ? <></>
+                    {1 === maxPage  ? <></>
                         : <button style={{ color: 'white', backgroundColor: actPage === maxPage ? '#dc3545' : 'gray', borderColor: actPage === maxPage ? '#0069d9' : 'gray' }} onClick={() => showButton(maxPage)}>{maxPage}</button>
                     }
-                    {statedroite && !(actPage == maxPage) ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleRight} onClick={() => pageIteration(false)} /> : <></>}
+                    {statedroite && !(actPage === maxPage) ? <FontAwesomeIcon style={{ color: 'white' }} icon={faAngleDoubleRight} onClick={() => pageIteration(false)} /> : <></>}
 
                     <Input style={{ width: '75px' }} value={limite} type="select" onChange={(event) => sendlimite(event.target.value)} >
                         <option>10</option>
