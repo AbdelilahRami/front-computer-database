@@ -22,8 +22,8 @@ export function AddCompany({addCompany,setAdding}){
     return(
 
         <Form className="form"
-                onSubmit={handleSubmit}
-        ><h2>Adding company form</h2>
+                onSubmit={handleSubmit}>
+            <h2>Adding company form</h2>
             <Label>Name</Label>
             <Input type="text" name="name" value={company.name} onChange={handleChange} />
             {errors.name && <p>{errors.name}</p>}
