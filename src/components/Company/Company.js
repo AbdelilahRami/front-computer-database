@@ -10,7 +10,7 @@ export function Company({company,edit}) {
                 <td>{id}</td>
                 <td>{name}</td>
                 <td>
-              <button className="button muted-button" onClick={()=>
+              <button style={{ color: 'dark', backgroundColor: '#ffc107', borderColor: '#ffc107' }} className="button muted-button" onClick={()=>
                   edit(stateCompani)} >Edit</button>
             </td>
             </tr>    
