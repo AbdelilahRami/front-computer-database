@@ -11,6 +11,7 @@ export default function Footer({ recupererLimite, maxPage, recupererActualPage, 
     const [statedroite, setdroite] = useState(true)
 
     function iterateButton() {
+        if(actPage>maxPage){setActPage(1)}
         if (actPage === 1) {
             if (maxPage === 3) {
                 return (
