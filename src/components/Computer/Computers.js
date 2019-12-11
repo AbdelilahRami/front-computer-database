@@ -126,12 +126,12 @@ export function Computers() {
             <Table striped bordered hover style={{ marginLeft: 'auto', marginRight: 'auto', width: '90%' }}>
               <thead>
                 <tr>
-                  <th>  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()} /> </th>
-                  <th>Name</th>
-                  <th>Introduced</th>
-                  <th>Discontinued</th>
-                  <th>Company</th>
-                  <th>Action</th>
+                  <th style={{textAlign:"center"}}>  <FontAwesomeIcon  style={{fontSize:"25px"}} icon={faTrash} onClick={() => deleteFunction()} /> </th>
+                  <th style={{textAlign:"center"}}>Name</th>
+                  <th style={{textAlign:"center"}}>Introduced</th>
+                  <th style={{textAlign:"center"}}>Discontinued</th>
+                  <th style={{textAlign:"center"}}>Company</th>
+                  <th style={{textAlign:"center"}}>Action</th>
                 </tr>
               </thead>
               <tbody>
