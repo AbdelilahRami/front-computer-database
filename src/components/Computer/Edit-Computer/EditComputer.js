@@ -79,7 +79,7 @@ function EditComputer({ updateComputer, currentComputer,setEditing }) {
           id="discontinued"
           placeholder="discontinued date"
         />
-        {errors.introduced && <p className="Stylish">{errors.introduced}</p>}
+        {errors.discontinued && <p className="Stylish">{errors.introduced}</p>}
       </FormGroup>
       <FormGroup>
         <Label for="exampleSelect">Company</Label>
