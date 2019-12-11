@@ -63,8 +63,9 @@ export function Companies() {
         <Table striped bordered hover style={{marginLeft:'auto',marginRight:'auto',width:'50%'}}>
           <thead>
             <tr>
-              <th>Id</th>
-              <th>Comapny</th>
+              <th style={{textAlign:"center"}}>Id</th>
+              <th style={{textAlign:"center"}}>Comapny</th>
+              <th style={{textAlign:"center"}}>Action</th>
             </tr>
           </thead>
           <tbody>

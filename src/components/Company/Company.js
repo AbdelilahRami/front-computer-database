@@ -7,9 +7,9 @@ export function Company({company,edit,deleteCompany}) {
     return (
         <>
             <tr>
-                <td>{id}</td>
-                <td>{name}</td>
-                <td>
+                <td style={{textAlign:"center"}}>{id}</td>
+                <td style={{textAlign:"center"}}>{name}</td>
+                <td style={{textAlign:"center"}}>
                     <div>
                         <button style={{ color: 'dark', backgroundColor: '#ffc107', borderColor: '#ffc107' }} className="button muted-button" onClick={() =>
                             edit(company)} >Edit</button>
