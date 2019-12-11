@@ -5,15 +5,15 @@ export default function validate(computer) {
     }
 
     if (Date.parse(computer.introduced) > Date.parse(computer.discontinued)) {
-        errors.introduced = "introduced is before discontinued";
+        errors.introduced = "introduced date  is before discontinued date";
     }
 
     if (Date.parse(computer.introduced) > new Date()) {
-        errors.introduced = "date cannot exced tomorrow date";
+        errors.introduced = "date cannot exced today date";
     }
 
     if (Date.parse(computer.discontinued) > new Date()) {
-        errors.discontinued = "date cannot exced tomorrow date";
+        errors.discontinued = "date cannot exced today date";
     }
 
     if (Date.parse(computer.introduced) < new Date('1970-01-01')) {

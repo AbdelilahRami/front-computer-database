@@ -16,7 +16,7 @@ export function Company({company,edit,deleteCompany}) {
                             edit(stateCompani)} >Edit</button>
                         <span style={{ marginLeft: '10px' }}></span>
                         <button className="button muted-button" onClick={() =>
-                             deleteCompany(stateCompani)} style={{ color: 'dark', backgroundColor: '#20c997', borderColor: '#20c997' }} >Delete</button>
+                            {if (window.confirm('Are you sure you wish to delete this item?')) deleteCompany(stateCompani)}} style={{ color: 'dark', backgroundColor: '#20c997', borderColor: '#20c997' }} >Delete</button>
                     </div>
                 </td>
             </tr>

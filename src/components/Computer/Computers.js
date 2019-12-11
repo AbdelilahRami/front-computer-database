@@ -117,7 +117,7 @@ export function Computers() {
               </Col>
               <Col sm={5}>
                 <h3>
-                  Nombre d'ordinateurs :
+                  Computer number :
             <Badge variant="danger">{computers.nbComputer} </Badge>
                 </h3>
               </Col>
