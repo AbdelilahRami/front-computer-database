@@ -37,7 +37,7 @@ export function Computers() {
 
   function recupererLimite(mylimit) {
     setPage({ ...page, actPage: 1, limite: mylimit })
-    var resulte = Math.round(computers.nbComputer / mylimit)
+    var resulte = Math.ceil(computers.nbComputer/ mylimit)
     resulte = resulte === 0 ? 1 : resulte
     setmaxpage(resulte)
   }
@@ -46,7 +46,7 @@ export function Computers() {
     getComputer(page).then(
       response => {
         setComputers(response.data || [])
-        var resulte = Math.round(response.data.nbComputer / page.limite)
+        var resulte = Math.ceil(response.data.nbComputer / page.limite)
         resulte = resulte === 0 ? 1 : resulte
         setmaxpage(resulte)
       }
