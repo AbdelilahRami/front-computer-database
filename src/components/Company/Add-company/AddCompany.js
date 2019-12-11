@@ -4,18 +4,13 @@ import {Form, Label, FormGroup} from 'reactstrap';
 import useForm from './useForm';
 import validate from './validate-company'
 
-export function AddCompany({addCompany,setAdding}){
-    const { handleChange, handleSubmit,company, errors} = useForm(
-        submit,
-        validate
-      );
-    const initialFormState ={id:null, name:''}
+export default function AddCompany({addCompany,setAdding}){
 
-    //const [company,setCompany] = useState(initialFormState);
-    const [disable,setDisable]= useState(false);
+    const { handleChange, handleSubmit,company, errors} = useForm(submit, validate);
+
     let error="";
+
     function submit(){
-      console.log(company)
       addCompany(company)
     }
 
@@ -39,4 +34,3 @@ export function AddCompany({addCompany,setAdding}){
         </Form>
     );
 }
-export default AddCompany;

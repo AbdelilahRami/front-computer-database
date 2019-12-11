@@ -17,11 +17,11 @@ export default function Login({log}) {
 
     function show() {
         authentificatePage(indentifiant).then(responce => {
-            log(true)
             AuthenticationService.registerSuccessfulLoginForJwt(indentifiant.username, responce.data)
             setLogin(true)
+            log(true)
         })
-            .catch(() => setError(true))
+        .catch(() => setError(true))
     }
     return (
         <>
