@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { Navbar, Nav,Button,Form } from 'react-bootstrap';
 import { Computers } from '../Computer/Computers';
@@ -12,10 +12,16 @@ import AddComputer from '../Computer/Add-computer/AddComputer';
 export default function Header() {
 
   const [isLog,setIslog] = useState(false)
+
   function logout(){
     AuthenticationService.logout()
     setIslog(false)
   }
+
+  useEffect(()=>{
+    setIslog(AuthenticationService.isUserLoggedIn())
+  },[])
+  
 
   return (
     <Router>
@@ -25,10 +31,12 @@ export default function Header() {
           <Nav variant="white" className="mr-auto">
             <Nav.Link href="/computers">Computers</Nav.Link>
             <Nav.Link href="/companies"> Companies</Nav.Link>
-            {!isLog?<Nav.Link href="/login">Login</Nav.Link>:<></>}
+            {!isLog && !AuthenticationService.isUserLoggedIn() ?<Nav.Link href="/login">Login</Nav.Link>:<></>}
           </Nav>
+          {console.log("isLog "+isLog)}
+          {console.log("AuthenticationService "+AuthenticationService.isUserLoggedIn())}
           {
-            isLog?
+            isLog || AuthenticationService.isUserLoggedIn()?
             <Form inline>
                <Button style={{ color: 'white', backgroundColor: 'gray', borderColor:'gray',height:'50px'}} onClick={()=>logout()}>Logout</Button>
             </Form>
