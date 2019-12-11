@@ -38,7 +38,6 @@ function EditComputer({ updateComputer, currentComputer,setEditing }) {
   }
   , [])
 
-console.log(computer)
 
   return (
     <Form className="form"
