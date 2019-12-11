@@ -15,7 +15,7 @@ export function Company({company,edit,deleteCompany}) {
                             edit(company)} >Edit</button>
                         <span style={{ marginLeft: '10px' }}></span>
                         <button className="button muted-button" onClick={() =>
-                            {if (window.confirm('Are you sure you wish to delete this item?')) deleteCompany(company)}} style={{ color: 'dark', backgroundColor: '#20c997', borderColor: '#20c997' }} >Delete</button>
+                            {if (window.confirm('Are you sure you wish to delete this item?')) deleteCompany(company)}} style={{ color: 'white', backgroundColor: 'red', borderColor: '#20c997' }} >Delete</button>
                     </div>
                 </td>
             </tr>
