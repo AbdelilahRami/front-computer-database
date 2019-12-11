@@ -54,7 +54,7 @@ console.log(computer)
           id="name"
           placeholder="computer Name"
         />
-        {errors.name && <p className="Stylish">{errors.name}</p>}
+        {errors.name && <p>{errors.name}</p>}
       </FormGroup>
       <FormGroup>
         <Label for="exampleDate">Introduced Date</Label>
@@ -66,7 +66,7 @@ console.log(computer)
           onChange={handleChange}
           placeholder="Introduced date"
         />
-        {errors.introduced && <p className="Stylish">{errors.introduced}</p>}
+        {errors.introduced && <p>{errors.introduced}</p>}
       </FormGroup>
       <FormGroup>
         <Label for="exampleDate">Discontinued Date</Label>
@@ -78,7 +78,7 @@ console.log(computer)
           id="discontinued"
           placeholder="discontinued date"
         />
-        {errors.introduced && <p className="Stylish">{errors.introduced}</p>}
+        {errors.introduced && <p>{errors.introduced}</p>}
       </FormGroup>
       <FormGroup>
         <Label for="exampleSelect">Company</Label>

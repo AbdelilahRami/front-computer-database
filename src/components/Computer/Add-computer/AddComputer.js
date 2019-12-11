@@ -106,7 +106,9 @@ export default function AddComputer() {
       <button>Add Computer</button>&nbsp;&nbsp;&nbsp;
       <button type="button" onClick={cancelForm} className="button muted-button">Cancel</button>
       <p></p>
-    </Form>}
-    </>
+    </Form>
+  }
+  </>
+   
   )
 }
