@@ -33,8 +33,6 @@ export default function Header() {
             <Nav.Link href="/companies"> Companies</Nav.Link>
             {!isLog && !AuthenticationService.isUserLoggedIn() ?<Nav.Link href="/login">Login</Nav.Link>:<></>}
           </Nav>
-          {console.log("isLog "+isLog)}
-          {console.log("AuthenticationService "+AuthenticationService.isUserLoggedIn())}
           {
             isLog || AuthenticationService.isUserLoggedIn()?
             <Form inline>
