@@ -8,6 +8,7 @@ function useForm(callback, validate, currentComputer) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleSubmit(event) {
+    console.log(computer);
     event.preventDefault()
     setErrors(validate(computer));
     setIsSubmitting(true);
