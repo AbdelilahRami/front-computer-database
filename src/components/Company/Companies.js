@@ -21,12 +21,13 @@ export function Companies() {
 
   function addCompany(company) {
     setAdding(false);
-    createCompany(company.name).then(()=>{
+    createCompany(company).then(()=>{
       getCompanies().then(response => {
         setCompanies(response.data)
       })
     })
   }
+
   function deleteCompany(company){
     deleteCompani(company).then(()=>{
       getCompanies().then(response=>{
@@ -36,7 +37,7 @@ export function Companies() {
 
   }
 
-  function editCompany(id, updatedCompany) {
+  function editCompany(updatedCompany) {
     setEditing(false)
     updateCompany(updatedCompany).then(response=>{
       getCompanies().then(response => {
