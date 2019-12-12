@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 
 export function Company({company,edit,deleteCompany}) {
     const {id,name} = company
-    const [stateCompani,setStateCompani] = useState(company)
 
     return (
         <>
             <tr>
-                <td>{id}</td>
-                <td>{name}</td>
-                <td>
+                <td style={{textAlign:"center"}}>{id}</td>
+                <td style={{textAlign:"center"}}>{name}</td>
+                <td style={{textAlign:"center"}}>
                     <div>
                         <button style={{ color: 'dark', backgroundColor: '#ffc107', borderColor: '#ffc107' }} className="button muted-button" onClick={() =>
-                            edit(stateCompani)} >Edit</button>
+                            edit(company)} >Edit</button>
                         <span style={{ marginLeft: '10px' }}></span>
                         <button className="button muted-button" onClick={() =>
-                             deleteCompany(stateCompani)} style={{ color: 'dark', backgroundColor: '#20c997', borderColor: '#20c997' }} >Delete</button>
+                            {if (window.confirm('Are you sure you wish to delete this item?')) deleteCompany(company)}} style={{ color: 'white', backgroundColor: 'red', borderColor: '#20c997' }} >Delete</button>
                     </div>
                 </td>
             </tr>

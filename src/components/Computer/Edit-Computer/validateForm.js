@@ -1,20 +1,20 @@
 export default function validate(computer) {
     let errors = {};
     if (!computer.name) {
-        errors.name = "computer name is not empty";
+        errors.name = "computer name is empty";
     }
 
     if (Date.parse(computer.introduced) > Date.parse(computer.discontinued)) {
         console.log(Date.parse(computer.introduced))
-        errors.introduced = "introduced is before discontinued";
+        errors.introduced = "the date of introduction must be prior to the date of abandonment";
     }
 
     if (Date.parse(computer.introduced) > new Date()) {
-        errors.introduced = "date cannot exced tomorrow date";
+        errors.introduced = "date cannot exceed the current date";
     }
 
     if (Date.parse(computer.discontinued) > new Date()) {
-        errors.discontinued = "date cannot exced tomorrow date";
+        errors.discontinued = "date cannot exceed the current date";
     }
 
     if (Date.parse(computer.introduced) < new Date('1970-01-01')) {

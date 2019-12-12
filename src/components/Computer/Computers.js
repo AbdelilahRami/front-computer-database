@@ -37,7 +37,7 @@ export function Computers() {
 
   function recupererLimite(mylimit) {
     setPage({ ...page, actPage: 1, limite: mylimit })
-    var resulte = Math.round(computers.nbComputer / mylimit)
+    var resulte = Math.ceil(computers.nbComputer/ mylimit)
     resulte = resulte === 0 ? 1 : resulte
     setmaxpage(resulte)
   }
@@ -46,7 +46,7 @@ export function Computers() {
     getComputer(page).then(
       response => {
         setComputers(response.data || [])
-        var resulte = Math.round(response.data.nbComputer / page.limite)
+        var resulte = Math.ceil(response.data.nbComputer / page.limite)
         resulte = resulte === 0 ? 1 : resulte
         setmaxpage(resulte)
       }
@@ -104,7 +104,7 @@ export function Computers() {
               <Col sm={3}>
               </Col>
               <Col sm={4}>
-                <input style={{ width: "3000px", align: "center" }} size="sm" type="text" placeholder="Veuillez saisir un computer name" onChange={event => setPage({ ...page, search: event.target.value, actPage: 1 })} />
+                <input style={{ width: "3000px", align: "center" }} size="sm" type="text" placeholder="Please enter a computer name" onChange={event => setPage({ ...page, search: event.target.value, actPage: 1 })} />
               </Col>
               <Col sm={4}>
                 <Button size="lg" style={{ color: 'white', backgroundColor: '#17a2b8', borderColor: '#17a2b8' }} variant="secondary" type="submit" className="btn btn-secondary float-right" onClick={() => setAdding(!addingMode)}>Add Computer</Button>
@@ -117,7 +117,7 @@ export function Computers() {
               </Col>
               <Col sm={5}>
                 <h3>
-                  Nombre d'ordinateurs :
+                  Computer number :
             <Badge variant="danger">{computers.nbComputer} </Badge>
                 </h3>
               </Col>
@@ -126,12 +126,12 @@ export function Computers() {
             <Table striped bordered hover style={{ marginLeft: 'auto', marginRight: 'auto', width: '90%' }}>
               <thead>
                 <tr>
-                  <th>  <FontAwesomeIcon icon={faTrash} onClick={() => deleteFunction()} /> </th>
-                  <th>Name</th>
-                  <th>Introduced</th>
-                  <th>Discontinued</th>
-                  <th>Company</th>
-                  <th>Action</th>
+                  <th style={{textAlign:"center"}}>  <FontAwesomeIcon  style={{fontSize:"25px"}} icon={faTrash} onClick={() => deleteFunction()} /> </th>
+                  <th style={{textAlign:"center"}}>Name</th>
+                  <th style={{textAlign:"center"}}>Introduced</th>
+                  <th style={{textAlign:"center"}}>Discontinued</th>
+                  <th style={{textAlign:"center"}}>Company</th>
+                  <th style={{textAlign:"center"}}>Action</th>
                 </tr>
               </thead>
               <tbody>

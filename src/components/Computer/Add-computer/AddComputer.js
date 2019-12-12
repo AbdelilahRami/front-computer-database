@@ -24,9 +24,8 @@ export default function AddComputer() {
   }
 
   function getCompanyDTO(event) {
-    const companyName = event.target.value;
-    const idCompany = event.target.options.selectedIndex;
-    const companyDTOX = { id: idCompany, name: companyName };
+    var word = event.target.value.split(',')
+    const companyDTOX = { id: parseInt(word[0]), name: word[1] };
     setComputer({ ...computer, companyDTO: companyDTOX })
   }
 
@@ -102,7 +101,7 @@ export default function AddComputer() {
             <Label for="exampleSelect">Company</Label>
             <Input type="select" onChange={getCompanyDTO} name="select" id="exampleSelect">
               <option key="0" value=""></option>
-              {companies.map(company => <option value={company.name} key={company.id} >{company.name}</option>)}
+              {companies.map(company => <option value={company.id + ","+company.name} key={company.id} >{company.name}</option>)}
             </Input>
           </FormGroup>
           <div style={{ textAlign: 'center' }}>

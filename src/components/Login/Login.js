@@ -17,11 +17,11 @@ export default function Login({log}) {
 
     function show() {
         authentificatePage(indentifiant).then(responce => {
-            log(true)
             AuthenticationService.registerSuccessfulLoginForJwt(indentifiant.username, responce.data)
             setLogin(true)
+            log(true)
         })
-            .catch(() => setError(true))
+        .catch(() => setError(true))
     }
     return (
         <>
@@ -42,7 +42,7 @@ export default function Login({log}) {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" onChange={event => setIndentifiant({ ...indentifiant, password: event.target.value })} />
                         </FormGroup>
-                        {error ? <div style={{color:'red'}}>Error de connection, identifiant ou mot de passe incorrect</div> : <></>}
+                        {error ? <div style={{color:'red'}}>Connection fails, username or/and password are not correct</div> : <></>}
                         <br/>
                         <div style={{textAlign:'center'}}>
                                 <Button style={{backgroundColor:'#17a2b8',borderColor:'#17a2b8',marginLeft:'auto',width:'20%'}} size="lg" onClick={() => show()}>
