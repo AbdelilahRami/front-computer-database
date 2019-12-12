@@ -118,7 +118,7 @@ export function Computers() {
               <Col sm={5}>
                 <h3>
                   Computer number :
-            <Badge variant="danger">{computers.nbComputer} </Badge>
+            <Badge variant="info">{computers.nbComputer} </Badge>
                 </h3>
               </Col>
             </Row>
