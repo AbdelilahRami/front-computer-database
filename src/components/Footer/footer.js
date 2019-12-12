@@ -118,6 +118,8 @@ export default function Footer({ recupererLimite, maxPage, recupererActualPage, 
     function sendlimite(limite) {
         setActPage(1)
         recupererLimite(limite)
+        setgauche(false);
+        setdroite(true);
     }
 
     function showButton(page) {
